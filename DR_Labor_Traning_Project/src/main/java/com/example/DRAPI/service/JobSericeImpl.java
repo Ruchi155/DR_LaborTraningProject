@@ -1,5 +1,7 @@
 package com.example.DRAPI.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +21,7 @@ public class JobSericeImpl implements JobService {
 		temp.setDescription(j.getDescription());
 		temp.setJobCode(j.getJobCode());
 		temp.setMaxHoursPerDay(j.getMaxHoursPerDay());
+		repo.save(temp);
 	}
 
 	@Override
@@ -41,4 +44,10 @@ public class JobSericeImpl implements JobService {
 		repo.delete(repo.getById(id));
 	}
 
+	@Override
+	public List<Job> getAllJobs() {
+		return repo.findAll();
+	}
+
+	
 }

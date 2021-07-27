@@ -1,5 +1,7 @@
 package com.example.DRAPI.service;
 
+import java.util.List;
+
 import com.example.DRAPI.model.Job;
 
 public interface JobService {
@@ -8,4 +10,5 @@ public interface JobService {
 	public Job getJobByCode(String code);
 	public void createJob(Job j);
 	public void deleteJobById(int id);
+	public List<Job> getAllJobs();
 }
