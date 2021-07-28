@@ -50,4 +50,17 @@ public class MachineServiceImpl implements MachineService{
 		return repo.findAll();
 	}
 
+	@Override
+	public void SaveMachine(Machine m) {
+		// TODO Auto-generated method stub
+		repo.save(m);
+		
+	}
+
+	@Override
+	public Machine get(int i) {
+		// TODO Auto-generated method stub
+		return repo.findById(i).get();
+	}
+
 }

@@ -16,9 +16,5 @@ public class ContractorServiceImpl implements ContractorService
 	@Autowired 
 	ContractorRepo contractorrepo;
 	
-	@Override
-	public Contractor getContractorById(Long id) 
-	{
-		return contractorrepo.findById(id).get();
-	}
+	
 }
