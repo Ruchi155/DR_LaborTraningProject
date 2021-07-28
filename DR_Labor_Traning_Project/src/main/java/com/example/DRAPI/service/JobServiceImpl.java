@@ -10,7 +10,7 @@ import com.example.DRAPI.model.Timecard;
 import com.example.DRAPI.repo.JobRepo;
 
 @Service
-public class JobSericeImpl implements JobService {
+public class JobServiceImpl implements JobService {
 
 	@Autowired
 	JobRepo repo;

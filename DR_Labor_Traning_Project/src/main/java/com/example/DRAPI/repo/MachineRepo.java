@@ -11,5 +11,5 @@ import com.example.DRAPI.model.Machine;
 @Repository
 public interface MachineRepo extends JpaRepository<Machine, Integer> {
 	@Query("SELECT m FROM Machine m WHERE m.machineCode = :code")
-	Machine findJobByCode(@Param("code")String code);
+	Machine findMachineByCode(@Param("code")String code);
 }
