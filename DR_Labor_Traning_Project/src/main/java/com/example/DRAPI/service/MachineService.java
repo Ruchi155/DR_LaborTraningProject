@@ -12,4 +12,6 @@ public interface MachineService {
 	public void createMachine(Machine m);
 	public void deleteMachineById(int id);
 	public List<Machine> getAllMachines();
+	public void SaveMachine(Machine m);
+	public Machine get(int id);
 }

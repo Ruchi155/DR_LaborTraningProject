@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+			xmlns:th="http://www.thymeleaf.org">
+			
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form th:action="@{/savemachine}" th:object="${machine}" Method="Post">
+
+MachineCode:<input type="text" th:field="*{machineCode}"/><br><br>
+Description:<input type="text" th:field="*{description}"/><br><br>
+HourlyRent:<input type= "text" th:field="*{hourlyRent}"/><br><br>
+MaxHours Per Day:<input type= "text" th:field="*{maxHoursPerDay}"/>
+<button type="submit">Save</button>
+</form>
+
+
+</body>
+</html>

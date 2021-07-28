@@ -12,12 +12,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.DRAPI.model.Job;
+import com.example.DRAPI.model.Machine;
 import com.example.DRAPI.model.Timecard;
 import com.example.DRAPI.service.JobService;
+import com.example.DRAPI.service.MachineService;
 import com.example.DRAPI.service.TimecardService;
-
-
-
 
 @Controller
 public class DRLaborController 
@@ -28,6 +27,9 @@ public class DRLaborController
 	
 	@Autowired
 	JobService jobserv;
+	
+	@Autowired
+	MachineService machineserv;
 	
 	/* Timecard Controller */
 	
@@ -103,6 +105,44 @@ public class DRLaborController
 	{
 		jobserv.deleteJobById(id);
 		return "redirect:/list_jobs";
-		
 	}
+	
+	/* Machine Controller */
+	
+	@RequestMapping("list_machines")
+	public String listmachines(Model model) {
+		List<Machine> list = machineserv.getAllMachines();
+		model.addAttribute("machines", list);
+		return "machine";	
+	}
+	
+	@RequestMapping("/newmachine")
+	public String addnewMachine(Model model) {
+		Machine m = new Machine();
+		model.addAttribute("machine", m);
+		return "new_machine";
+	}
+	@RequestMapping(value= "/savemachine", method=RequestMethod.POST)
+	public String saveMachine(@ModelAttribute("machine") Machine m)
+	{
+		machineserv.SaveMachine(m);
+		return "redirect:/list_machines";
+	}
+	
+	@RequestMapping("/editmachine/{id}")
+	public ModelAndView showEditMachinePage(@PathVariable(name="id") int id)
+	{
+		ModelAndView mav= new ModelAndView("edit_machine");
+		Machine m= machineserv.get(id);
+		mav.addObject("machine",m);
+		return mav;
+	}
+	
+	@RequestMapping("/deletemachine/{id}")
+	public String deleteMachine(@PathVariable(name="id") int id)
+	{
+		machineserv.deleteMachineById(id);
+		return "redirect:/list_machines";
+	}
+	
 }

@@ -12,12 +12,7 @@ public class AdminServiceImpl implements AdminService
 	@Autowired
 	AdminRepo adminrepo;
 	
-	@Override
-	public Admin getAdminById(Long id) 
-	{
-		return adminrepo.findById(id).get();
-	}
-
+	
 }
 
 	
