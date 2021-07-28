@@ -16,14 +16,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.DRAPI.model.Job;
-import com.example.DRAPI.service.JobSericeImpl;
+import com.example.DRAPI.service.JobServiceImpl;
 
 @RestController
 @RequestMapping("jobAPI")
 public class JobRestController {
 	
 	@Autowired
-	private JobSericeImpl service;
+	private JobServiceImpl service;
 	
 	@GetMapping("/all")
 	public List<Job> getAllJobs(){

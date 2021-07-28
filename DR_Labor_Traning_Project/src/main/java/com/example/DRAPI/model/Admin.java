@@ -22,7 +22,7 @@ public class Admin implements Serializable
 {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	Long id;
+	int id;
 	@Size(min=7,max=50)
 	String username;
 	
@@ -36,10 +36,10 @@ public class Admin implements Serializable
 	public Admin() {
 		
 	}
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getUsername() {

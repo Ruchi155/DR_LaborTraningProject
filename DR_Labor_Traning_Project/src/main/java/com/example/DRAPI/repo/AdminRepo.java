@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import com.example.DRAPI.model.Admin;
 
 @Repository
-public interface AdminRepo extends JpaRepository<Admin, Long>
+public interface AdminRepo extends JpaRepository<Admin, Integer>
 {
 
 }

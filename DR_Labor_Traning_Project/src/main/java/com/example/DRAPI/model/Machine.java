@@ -89,8 +89,14 @@ public class Machine implements Serializable
 
 	@Override
 	public String toString() {
-		return "Machine [id=" + id + ", machineCode=" + machineCode + ", description=" + description + ", hourlyRent="
+		return "Machine [machineCode=" + machineCode + ", description=" + description + ", hourlyRent="
 				+ hourlyRent + ", maxHoursPerDay=" + maxHoursPerDay + "]";
+	}
+	public Set<Timecard> getTimecards() {
+		return timecards;
+	}
+	public void setTimecards(Set<Timecard> timecards) {
+		this.timecards = timecards;
 	}
 
 

@@ -32,7 +32,7 @@ public class MachineServiceImpl implements MachineService{
 
 	@Override
 	public Machine getMachineByCode(String code) {
-		return repo.findJobByCode(code);
+		return repo.findMachineByCode(code);
 	}
 
 	@Override

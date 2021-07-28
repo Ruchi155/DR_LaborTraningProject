@@ -9,7 +9,7 @@ import com.example.DRAPI.model.Job;
 import com.example.DRAPI.repo.JobRepo;
 
 @Service
-public class JobSericeImpl implements JobService {
+public class JobServiceImpl implements JobService {
 
 	@Autowired
 	JobRepo repo;
