@@ -1,12 +1,16 @@
 package com.example.DRAPI.model;
 
 import java.io.Serializable;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -27,18 +31,12 @@ public class Machine implements Serializable
 	
 	private double maxHoursPerDay;
 	
-	@ManyToOne
-	@JoinColumn(name = "admin_id")
-	private Admin admin;
-	
+	@ManyToMany(cascade=CascadeType.ALL,mappedBy = "machines", fetch = FetchType.LAZY)
+	private Set<Timecard> timecards;
 
-	@ManyToOne
-	@JoinColumn(name = "contractor_id")
-	private Contractor contractor;
 	public Machine() {
 		
 	}
-
 	public Machine(String machineCode, String description, double hourlyRent, double maxHoursPerDay) {
 		super();
 		this.machineCode = machineCode;
@@ -87,27 +85,12 @@ public class Machine implements Serializable
 		this.id = id;
 	}
 
-	public Admin getAdmin() {
-		return admin;
-	}
 
-	public void setAdmin(Admin admin) {
-		this.admin = admin;
-	}
-	public Contractor getContractor() {
-		return contractor;
-	}
-
-	public void setContractor(Contractor contractor) {
-		this.contractor = contractor;
-	} 
-	
 
 	@Override
 	public String toString() {
 		return "Machine [id=" + id + ", machineCode=" + machineCode + ", description=" + description + ", hourlyRent="
-				+ hourlyRent + ", maxHoursPerDay=" + maxHoursPerDay + ", admin=" + admin + ", contractor=" + contractor
-				+ "]";
+				+ hourlyRent + ", maxHoursPerDay=" + maxHoursPerDay + "]";
 	}
 
 

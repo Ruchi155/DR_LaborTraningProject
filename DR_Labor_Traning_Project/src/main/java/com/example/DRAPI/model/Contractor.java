@@ -29,16 +29,12 @@ public class Contractor implements Serializable
 	
 	String email;
 	
-
-	@OneToMany(mappedBy = "contractor", cascade = CascadeType.ALL,fetch=FetchType.EAGER)
-	private Set<Job> job;
-	
-	@OneToMany(mappedBy="contractor",fetch=FetchType.EAGER,cascade=CascadeType.ALL)
-	private Set<Machine> machine;
-	
 	@OneToMany(mappedBy= "contractor",fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	private Set<Timecard> timecard;
 	
+	public Contractor() {
+		
+	}
 	public Long getId() {
 		return id;
 	}
@@ -64,42 +60,41 @@ public class Contractor implements Serializable
 		this.email = email;
 	}
 	
-	public Set<Job> getJobs() {
-		return job;
-	}
-	public void setJobs(Set<Job> job) {
-		this.job = job;
-	}
-	public Set<Machine> getMachines() {
-		return machine;
-	}
-	public void setMachines(Set<Machine> machine) {
-		this.machine = machine;
-	}
-	public Set<Timecard> getTimecard() {
-		return timecard;
-	}
-	public void setTimecard(Set<Timecard> timecard) {
-		this.timecard = timecard;
-	}
-	public Set<Job> getJob() {
-		return job;
-	}
-	public void setJob(Set<Job> job) {
-		this.job = job;
-	}
-	public Set<Machine> getMachine() {
-		return machine;
-	}
-	public void setMachine(Set<Machine> machine) {
-		this.machine = machine;
-	}
-	
+//	public Set<Job> getJobs() {
+//		return job;
+//	}
+//	public void setJobs(Set<Job> job) {
+//		this.job = job;
+//	}
+//	public Set<Machine> getMachines() {
+//		return machine;
+//	}
+//	public void setMachines(Set<Machine> machine) {
+//		this.machine = machine;
+//	}
+//	public Set<Timecard> getTimecard() {
+//		return timecard;
+//	}
+//	public void setTimecard(Set<Timecard> timecard) {
+//		this.timecard = timecard;
+//	}
+//	public Set<Job> getJob() {
+//		return job;
+//	}
+//	public void setJob(Set<Job> job) {
+//		this.job = job;
+//	}
+//	public Set<Machine> getMachine() {
+//		return machine;
+//	}
+//	public void setMachine(Set<Machine> machine) {
+//		this.machine = machine;
+//	}
+//	
 
 	@Override
 	public String toString() {
-		return "Contractor [id=" + id + ", name=" + name + ", password=" + password + ", email=" + email + ", job="
-				+ job + ", machine=" + machine + ", timecard=" + timecard + "]";
+		return "Contractor [id=" + id + ", name=" + name + ", password=" + password + ", email=" + email + "]";
 	}
 
 }

@@ -33,15 +33,9 @@ public class Admin implements Serializable
 	@Email(message = "Please enter a valid e-mail address")
 	String email;
 	
-	@OneToMany(mappedBy = "admin", cascade = CascadeType.ALL,fetch=FetchType.EAGER)
-	private Set<Job> job;
-	
-	@OneToMany(mappedBy="admin",fetch=FetchType.EAGER,cascade=CascadeType.ALL)
-	private Set<Machine> machine;
-	
-	@OneToMany(mappedBy= "admin",fetch=FetchType.EAGER,cascade=CascadeType.ALL)
-	private Set<Timecard> timecard;
-	
+	public Admin() {
+		
+	}
 	public Long getId() {
 		return id;
 	}
@@ -67,43 +61,9 @@ public class Admin implements Serializable
 		this.email = email;
 	}
 	
-	
-	public Set<Job> getJobs() {
-		return job;
-	}
-	public void setJobs(Set<Job> job) {
-		this.job = job;
-	}
-	public Set<Machine> getMachines() {
-		return machine;
-	}
-	public void setMachines(Set<Machine> machine) {
-		this.machine = machine;
-	}
-	public Set<Timecard> getTimecard() {
-		return timecard;
-	}
-	public void setTimecard(Set<Timecard> timecard) {
-		this.timecard = timecard;
-	}
-	
-	public Set<Job> getJob() {
-		return job;
-	}
-	public void setJob(Set<Job> job) {
-		this.job = job;
-	}
-	public Set<Machine> getMachine() {
-		return machine;
-	}
-	public void setMachine(Set<Machine> machine) {
-		this.machine = machine;
-	}
-	
 	@Override
 	public String toString() {
-		return "Admin [id=" + id + ", username=" + username + ", password=" + password + ", email=" + email + ", job="
-				+ job + ", machine=" + machine + ", timecard=" + timecard + "]";
+		return "Admin [id=" + id + ", username=" + username + ", password=" + password + ", email=" + email + "]";
 	}
 	
 

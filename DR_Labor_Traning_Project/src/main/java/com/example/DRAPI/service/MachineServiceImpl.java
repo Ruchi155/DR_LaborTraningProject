@@ -27,7 +27,7 @@ public class MachineServiceImpl implements MachineService{
 
 	@Override
 	public Machine getMachineById(int id) {
-		return repo.getById(id);
+		return repo.findById(id).get();
 	}
 
 	@Override

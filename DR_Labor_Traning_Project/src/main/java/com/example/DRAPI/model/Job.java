@@ -1,14 +1,16 @@
 package com.example.DRAPI.model;
 
 import java.io.Serializable;
+import java.util.Set;
 
-
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -27,16 +29,9 @@ public class Job implements Serializable{
 	private double hourlyRate;
 	
 	private double maxHoursPerDay;
-	
-	@ManyToOne
-	@JoinColumn(name = "admin_id")
-	private Admin admin;
-	
-	@ManyToOne
-	@JoinColumn(name = "contractor_id")
-	private Contractor contractor;
-	
-	
+
+	@ManyToMany(cascade=CascadeType.ALL,mappedBy = "jobs", fetch = FetchType.LAZY)
+	private Set<Timecard> timecard;
 	
 	public Job() {
 		
@@ -90,26 +85,10 @@ public class Job implements Serializable{
 		this.id = id;
 	}
 
-	public Admin getAdmin() {
-		return admin;
-	}
-
-	public void setAdmin(Admin admin) {
-		this.admin = admin;
-	}
-
-	
-	public Contractor getContractor() {
-		return contractor;
-	}
-
-	public void setContractor(Contractor contractor) {
-		this.contractor = contractor;
-	}
 	@Override
 	public String toString() {
 		return "Job [id=" + id + ", jobCode=" + jobCode + ", description=" + description + ", hourlyRate=" + hourlyRate
-				+ ", maxHoursPerDay=" + maxHoursPerDay + ", admin=" + admin + ", contractor=" + contractor + "]";
+				+ ", maxHoursPerDay=" + maxHoursPerDay + "]";
 	}
 
 	

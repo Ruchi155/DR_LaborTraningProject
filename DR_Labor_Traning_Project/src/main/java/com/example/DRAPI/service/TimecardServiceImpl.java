@@ -18,8 +18,8 @@ public class TimecardServiceImpl implements TimecardService {
 	public void updateTimecard(int id, Timecard t) {
 		Timecard temp  = repo.getById(id);
 		
-		temp.setAdmin(t.getAdmin());
-		temp.setContract(t.getContract());
+//		temp.setAdmin(t.getAdmin());
+//		temp.setContract(t.getContract());
 		temp.setContractor(t.getContractor());
 		temp.setSiteCode(t.getSiteCode());
 		temp.setTotalAmount(t.getTotalAmount());
@@ -29,7 +29,7 @@ public class TimecardServiceImpl implements TimecardService {
 
 	@Override
 	public Timecard getTimecardById(int id) {
-		return repo.getById(id);
+		return repo.findById(id).get();
 	}
 
 	@Override

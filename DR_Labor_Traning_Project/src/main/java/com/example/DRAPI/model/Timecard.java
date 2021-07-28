@@ -1,12 +1,17 @@
 package com.example.DRAPI.model;
 
 import java.io.Serializable;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -19,25 +24,30 @@ public class Timecard implements Serializable {
 	
 	private String siteCode;
 	
-	private String contractor;
+	@ManyToOne
+	@JoinColumn(name = "contractor_id")
+	private Contractor contractor;
 	
 	private double totalHours;
 	
 	private double totalAmount;
 	
-	@ManyToOne
-	@JoinColumn(name = "admin_id")
-	private Admin admin;
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name="timecards_machines", 
+		joinColumns = {@JoinColumn(name = "timecard_id")},
+		inverseJoinColumns = {@JoinColumn(name="machine_id")})
+	private Set<Machine> machines;
 	
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name="timecards_jobs", 
+		joinColumns = {@JoinColumn(name = "timecard_id")},
+		inverseJoinColumns = {@JoinColumn(name="jobs_id")})
+	private Set<Job> jobs;
 
-	@ManyToOne
-	@JoinColumn(name = "contractor_id")
-	private Contractor contract;
-		public Timecard() {
+	public Timecard() {
 		
 	}
-
-	public Timecard(String siteCode, String contractor, double totalHours, double totalAmount) {
+	public Timecard(String siteCode, Contractor contractor, double totalHours, double totalAmount) {
 		super();
 		this.siteCode = siteCode;
 		this.contractor = contractor;
@@ -53,11 +63,11 @@ public class Timecard implements Serializable {
 		this.siteCode = siteCode;
 	}
 
-	public String getContractor() {
+	public Contractor getContractor() {
 		return contractor;
 	}
 
-	public void setContractor(String contractor) {
+	public void setContractor(Contractor contractor) {
 		this.contractor = contractor;
 	}
 
@@ -85,26 +95,11 @@ public class Timecard implements Serializable {
 		this.id = id;
 	}
 
-	public Admin getAdmin() {
-		return admin;
-	}
 
-	public void setAdmin(Admin admin) {
-		this.admin = admin;
-	}
-
-	public Contractor getContract() {
-		return contract;
-	}
-
-	public void setContract(Contractor contract) {
-		this.contract = contract;
-	}
-	
 	@Override
 	public String toString() {
 		return "Timecard [id=" + id + ", siteCode=" + siteCode + ", contractor=" + contractor + ", totalHours="
-				+ totalHours + ", totalAmount=" + totalAmount + ", admin=" + admin + ", contract=" + contract + "]";
+				+ totalHours + ", totalAmount=" + totalAmount + "]";
 	}
 
 

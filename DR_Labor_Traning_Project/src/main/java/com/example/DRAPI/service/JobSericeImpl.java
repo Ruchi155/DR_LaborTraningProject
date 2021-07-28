@@ -26,7 +26,7 @@ public class JobSericeImpl implements JobService {
 
 	@Override
 	public Job getJobById(int id) {
-		return repo.getById(id);
+		return repo.findById(id).get();
 	}
 
 	@Override
