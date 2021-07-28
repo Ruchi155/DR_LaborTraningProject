@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+			xmlns:th="http://www.thymeleaf.org">
+			
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form th:action="@{/savejob}" th:object="${job}" Method="Post">
+ID:<input type="text" th:field="*{id}" readonly=readonly/>
+Job Code:<input type="text" th:field="*{jobCode}"/><br><br>
+Description:<input type="text" th:field="*{description}" /><br><br>
+Hourly Rate:<input type= "text" th:field="*{hourlyRate}" />
+<br><br>
+MaxHours Per Day:<input type= "text" th:field="*{maxHoursPerDay}" />
+<button type="submit">Update</button>
+</form>

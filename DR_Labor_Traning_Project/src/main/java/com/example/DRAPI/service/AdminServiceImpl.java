@@ -3,12 +3,26 @@ package com.example.DRAPI.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.DRAPI.model.Admin;
 import com.example.DRAPI.repo.AdminRepo;
 
 @Service
-public class AdminServiceImpl 
+public class AdminServiceImpl implements AdminService
 {
 	@Autowired
-	AdminRepo admin;
+	AdminRepo adminrepo;
+	
+	@Override
+	public Admin getAdminById(Long id) 
+	{
+		return adminrepo.findById(id).get();
+	}
 
 }
+
+	
+
+	
+
+	
+

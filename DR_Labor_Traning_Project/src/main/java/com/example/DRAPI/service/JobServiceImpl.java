@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.DRAPI.model.Job;
+
+import com.example.DRAPI.model.Timecard;
 import com.example.DRAPI.repo.JobRepo;
 
 @Service
@@ -48,6 +50,19 @@ public class JobServiceImpl implements JobService {
 	public List<Job> getAllJobs() {
 		return repo.findAll();
 	}
+
+
+	@Override
+	public void SaveJob(Job j) {
+		// TODO Auto-generated method stub
+		repo.save(j);
+		
+	}
+	@Override
+	public Job get(int i) {
+		return repo.findById(i).get();
+	}
+
 
 	
 }
