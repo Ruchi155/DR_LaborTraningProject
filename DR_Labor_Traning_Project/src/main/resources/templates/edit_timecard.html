@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+			xmlns:th="http://www.thymeleaf.org">
+			
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form th:action="@{/savetimecard}" th:object="${timecard}" Method="Post">
+ID:<input type="text" th:field="*{id}" readonly=readonly/>
+Site Code:<input type="text" th:field="*{siteCode}"/><br><br>
+Total Hours:<input type="text" th:field="*{totalHours}" /><br><br>
+Total Amount:<input type= "text" th:field="*{TotalAmount}" />
+<button type="submit">Update</button>
+</form>
