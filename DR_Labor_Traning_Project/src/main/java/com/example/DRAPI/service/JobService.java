@@ -11,4 +11,6 @@ public interface JobService {
 	public void createJob(Job j);
 	public void deleteJobById(int id);
 	public List<Job> getAllJobs();
+	public void SaveJob(Job j);
+	public Job get(int id);
 }

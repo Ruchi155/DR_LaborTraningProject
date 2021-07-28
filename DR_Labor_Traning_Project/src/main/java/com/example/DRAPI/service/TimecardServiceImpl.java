@@ -2,12 +2,12 @@ package com.example.DRAPI.service;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.DRAPI.model.Timecard;
 import com.example.DRAPI.repo.TimecardRepo;
-
 @Service
 public class TimecardServiceImpl implements TimecardService {
 	
@@ -28,16 +28,6 @@ public class TimecardServiceImpl implements TimecardService {
 	}
 
 	@Override
-	public Timecard getTimecardById(int id) {
-		return repo.findById(id).get();
-	}
-
-	@Override
-	public Timecard getTimecardByCode(String code) {
-		return repo.findTimecardByCode(code);
-	}
-
-	@Override
 	public void createTimecard(Timecard t) {
 		repo.save(t);
 	}
@@ -51,5 +41,13 @@ public class TimecardServiceImpl implements TimecardService {
 	public List<Timecard> getAllTimecards() {
 		return repo.findAll();
 	}
-	
+	public void SaveTimecard(Timecard tc) 
+	{
+		repo.save(tc);
+	}
+
+	@Override
+	public Timecard get(int i) {
+		return repo.findById(i).get();
+	}
 }
