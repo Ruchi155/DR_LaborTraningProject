@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+			xmlns:th="http://www.thymeleaf.org">
+			
+			
+		
+		<table border=1 bgcolor="silver" align="center" cellpadding="6",cellspacing ="6">
+		
+		<br><br><br>
+		<h2 align="center">Machine Management</h2>
+		<tr>
+		<th>MachineCode</th>
+		<th>Description</th> 
+		<th>HourlyRent</th>
+		<th>MaxHoursPerDay</th>
+		
+		</tr>
+		<tr th:each="machine:${machines}">
+		<td th:text="${machine.machineCode}">MachineCode</td>
+		<td th:text="${machine.description}">Description</td>
+		<td th:text="${machine.hourlyRent}">Total Amount</td>	
+		<td th:text="${machine.maxHoursPerDay}">MaxHoursPerDay</td>
+			
+		<!--   <td><a th:href="@{/country_details/{name}(name=${country.name})}">view</a></td> -->
+		
+		<td><a th:href="@{/editmachine/{id}(id=${machine.id})}">edit</a></td>
+		<td><a th:href="@{/deletemachine/{id}(id=${machine.id})}">delete</a></td>
+		</tr>
+		
+		</table>
+		<br>
+		<br>
+		 <center><a href="/newmachine">Add New Machine</a></center>
+			
+</html>

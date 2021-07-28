@@ -98,8 +98,20 @@ public class Timecard implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Timecard [id=" + id + ", siteCode=" + siteCode + ", contractor=" + contractor + ", totalHours="
+		return "Timecard [siteCode=" + siteCode + ", contractor=" + contractor + ", totalHours="
 				+ totalHours + ", totalAmount=" + totalAmount + "]";
+	}
+	public Set<Machine> getMachines() {
+		return machines;
+	}
+	public void setMachines(Set<Machine> machines) {
+		this.machines = machines;
+	}
+	public Set<Job> getJobs() {
+		return jobs;
+	}
+	public void setJobs(Set<Job> jobs) {
+		this.jobs = jobs;
 	}
 
 

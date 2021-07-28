@@ -33,6 +33,14 @@ public class Job implements Serializable{
 	@ManyToMany(cascade=CascadeType.ALL,mappedBy = "jobs", fetch = FetchType.LAZY)
 	private Set<Timecard> timecard;
 	
+	public Set<Timecard> getTimecard() {
+		return timecard;
+	}
+
+	public void setTimecard(Set<Timecard> timecard) {
+		this.timecard = timecard;
+	}
+
 	public Job() {
 		
 	}
@@ -80,14 +88,13 @@ public class Job implements Serializable{
 	public int getId() {
 		return id;
 	}
-
-	public void setId(int id) {
+	
+	public void setId(int id){
 		this.id = id;
 	}
-
 	@Override
 	public String toString() {
-		return "Job [id=" + id + ", jobCode=" + jobCode + ", description=" + description + ", hourlyRate=" + hourlyRate
+		return "Job [jobCode=" + jobCode + ", description=" + description + ", hourlyRate=" + hourlyRate
 				+ ", maxHoursPerDay=" + maxHoursPerDay + "]";
 	}
 
