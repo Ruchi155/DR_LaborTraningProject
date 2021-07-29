@@ -1,14 +1,14 @@
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 			xmlns:th="http://www.thymeleaf.org">
-			
 <head>
-		<link rel="stylesheet" type="text/css"
-			th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
-			<title>Admin</title>
-	</head>
-	<body>	
-	
+<link rel="stylesheet" type="text/css"
+	th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
+	<title>Admin</title>
+</head>
+<body>
+
 	<div class="row row-no-gutters" style="height: 5vh; background-color:gray;">
 		<div>
 			<h3 style="margin-left:50px">Disaster Recovery Application</h4>
@@ -21,17 +21,12 @@
 			<button type="button" class="btn btn-outline-primary" style="height:50px; width: 100%;  margin-top:5px;"><a href="list_machines">Machine Management</a></button>
 		</div>
 	  	<div class="col-xs-12 col-md-8">
-<form th:action="@{/savemachine}" th:object="${machine}" Method="Post">
+	  	
+	  	</div>
+	</div>
 
-MachineCode:<input type="text" th:field="*{machineCode}"/><br><br>
-Description:<input type="text" th:field="*{description}"/><br><br>
-HourlyRent:<input type= "text" th:field="*{hourlyRent}"/><br><br>
-MaxHours Per Day:<input type= "text" th:field="*{maxHoursPerDay}"/>
-<button type="submit">Save</button>
-</form>
-
-</div>
-</div>
-
+	
+	
 </body>
 </html>
+

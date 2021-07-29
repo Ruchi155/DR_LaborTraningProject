@@ -2,17 +2,35 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 			xmlns:th="http://www.thymeleaf.org">
 			
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
-<form th:action="@{/savejob}" th:object="${job}" Method="Post">
-ID:<input type="text" th:field="*{id}" readonly=readonly/>
-Job Code:<input type="text" th:field="*{jobCode}"/><br><br>
-Description:<input type="text" th:field="*{description}" /><br><br>
-Hourly Rate:<input type= "text" th:field="*{hourlyRate}" />
-<br><br>
-MaxHours Per Day:<input type= "text" th:field="*{maxHoursPerDay}" />
-<button type="submit">Update</button>
-</form>
+	<head>
+		<link rel="stylesheet" type="text/css"
+			th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
+			<title>Admin</title>
+	</head>
+	<body>	
+	
+	<div class="row row-no-gutters" style="height: 5vh; background-color:gray;">
+		<div>
+			<h3 style="margin-left:50px">Disaster Recovery Application</h4>
+		 </div>
+	</div>
+		<div class="row row-no-gutters" style="height: 95vh; ">
+				<div class="col-xs-6 col-md-3" style="height:100%;background-color:whitesmoke">
+					<button type="button" class="btn btn-outline-primary" style="height:50px; width: 100%; margin-top:5px;"><a href="list_timecards">TimeSheet Approval</a></button>
+					<button type="button" class="btn btn-outline-primary" style="height:50px; width: 100%;  margin-top:5px;"><a href="list_jobs">Job Code Management</a></button>
+					<button type="button" class="btn btn-outline-primary" style="height:50px; width: 100%;  margin-top:5px;"><a href="list_machines">Machine Management</a></button>
+				</div>
+			  	<div class="col-xs-12 col-md-8">
+				<form th:action="@{/savejob}" th:object="${job}" Method="Post">
+				ID:<input type="text" th:field="*{id}" readonly=readonly/>
+				Job Code:<input type="text" th:field="*{jobCode}"/><br><br>
+				Description:<input type="text" th:field="*{description}" /><br><br>
+				Hourly Rate:<input type= "text" th:field="*{hourlyRate}" />
+				<br><br>
+				MaxHours Per Day:<input type= "text" th:field="*{maxHoursPerDay}" />
+				<button type="submit">Update</button>
+				</form>
+			</div>
+		</div>
+	</body>
+</html>

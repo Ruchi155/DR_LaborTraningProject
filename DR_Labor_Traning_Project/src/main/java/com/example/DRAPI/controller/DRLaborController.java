@@ -38,6 +38,16 @@ public class DRLaborController
 	@Autowired
 	AdminService adminserv;
 	
+	@RequestMapping("/admin")
+	public String adminMain() {
+		return "admin_main";
+	}
+	
+	@RequestMapping("/contractor")
+	public String contractorMain() {
+		return "contractor_main";
+	}
+	
 	/* Timecard Controller */
 	
 	@RequestMapping("/newtimecard")
@@ -53,11 +63,26 @@ public class DRLaborController
 		return "redirect:/list_timecards";
 	}
 	
+	@RequestMapping(value= "/savetimecardContractor", method=RequestMethod.POST)
+	public String saveTimecardContractor(@ModelAttribute("timecard") Timecard tc)
+	{
+		timecardserv.SaveTimecard(tc);
+		return "redirect:/contractor_timecards";
+	}
+	
+	
 	@RequestMapping("list_timecards")
 	public String listtimecards(Model model) {
 		List<Timecard> list = timecardserv.getAllTimecards();
 		model.addAttribute("timecards", list);
 		return "timecard";	
+	}
+	//needs to be updated to just view specific contractor's timecards
+	@RequestMapping("contractor_timecards")
+	public String contractortimecards(Model model) {
+		List<Timecard> list = timecardserv.getAllTimecards();
+		model.addAttribute("timecards", list);
+		return "contractor_timecard";	
 	}
 	
 	@RequestMapping("/deletetimecard/{id}")
@@ -65,6 +90,14 @@ public class DRLaborController
 	{
 		timecardserv.deleteTimecardById(id);
 		return "redirect:/list_timecards";
+		
+	}
+	
+	@RequestMapping("/deletetimecard/contractor/{id}")
+	public String deleteTimecardContractor(@PathVariable(name="id") int id)
+	{
+		timecardserv.deleteTimecardById(id);
+		return "redirect:/contractor_timecards";
 		
 	}
 	@RequestMapping("/edittimecard/{id}")
@@ -75,7 +108,14 @@ public class DRLaborController
 		mav.addObject("timecard",tc);
 		return mav;
 	}
-
+	@RequestMapping("/edittimecard/contractor/{id}")
+	public ModelAndView showEditTimecardPageContractor(@PathVariable(name="id") int id)
+	{
+		ModelAndView mav= new ModelAndView("edit_timecard_contractor");
+		Timecard tc= timecardserv.get(id);
+		mav.addObject("timecard",tc);
+		return mav;
+	}
 
 	/*Job Controller */
 

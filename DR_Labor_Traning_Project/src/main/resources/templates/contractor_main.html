@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 			xmlns:th="http://www.thymeleaf.org">
-			
-<head>
-		<link rel="stylesheet" type="text/css"
-			th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
-			<title>Contractor</title>
-	</head>
-	<body>	
-	
+
+	<link rel="stylesheet" type="text/css"
+	th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
+	<title>Contractor</title>
+</head>
+<body>
+
 	<div class="row row-no-gutters" style="height: 5vh; background-color:gray;">
 		<div>
 			<h3 style="margin-left:50px">Disaster Recovery Application</h4>
@@ -19,15 +18,11 @@
 			<button type="button" class="btn btn-outline-primary" style="height:50px; width: 100%; margin-top:5px;"><a href="contractor_timecards">TimeSheet Management</a></button>
 		</div>
 	  	<div class="col-xs-12 col-md-8">
-<form th:action="@{/savetimecardContractor}" th:object="${timecard}" Method="Post">
+	  	
+	  	</div>
+	</div>
 
-SiteCode:<input type="text" th:field="*{siteCode}"/><br><br>
-TotalHours:<input type="text" th:field="*{totalHours}"/><br><br>
-TotalAmount:<input type= "text" th:field="*{TotalAmount}"/>
-<button type="submit">Save</button>
-</form>
-
-</div>
-</div>
+	
+	
 </body>
 </html>
