@@ -9,11 +9,26 @@
 	</head>
 	<body>	
 	
-	<div class="row row-no-gutters" style="height: 5vh; background-color:gray;">
-		<div>
-			<h3 style="margin-left:50px">Disaster Recovery Application</h4>
-		 </div>
-	</div>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#" th:href="@{/}">Disaster Recovery</a>
+			</div>
+			<ul class="nav navbar-nav">
+						<li sec:authorize="isAuthenticated()"><a th:href="@{/login}">Logout</a></li>
+			</ul>
+		</div>
+	</nav>
+	</br>
+	</br>
+	</br>
 	<div class="row row-no-gutters" style="height: 95vh; ">
 		<div class="col-xs-6 col-md-3" style="height:100%;background-color:whitesmoke">
 			<button type="button" class="btn btn-outline-primary" style="height:50px; width: 100%; margin-top:5px;"><a href="contractor_timecards">TimeSheet Management</a></button>
@@ -21,10 +36,7 @@
 	  	<div class="col-xs-12 col-md-8">
 <form th:action="@{/savetimecardContractor}" th:object="${timecard}" Method="Post">
 
-SiteCode:<input type="text" th:field="*{siteCode}"/><br><br>
-TotalHours:<input type="text" th:field="*{totalHours}"/><br><br>
-TotalAmount:<input type= "text" th:field="*{TotalAmount}"/>
-<button type="submit">Save</button>
+
 </form>
 
 </div>
