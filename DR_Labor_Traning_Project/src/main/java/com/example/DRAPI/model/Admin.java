@@ -27,6 +27,9 @@ public class Admin implements Serializable
 	String username;
 	
 	@NotBlank
+	String name; 
+	
+	@NotBlank
 	String password;
 	
 	@NotBlank
@@ -36,6 +39,15 @@ public class Admin implements Serializable
 	public Admin() {
 		
 	}
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public int getId() {
 		return id;
 	}

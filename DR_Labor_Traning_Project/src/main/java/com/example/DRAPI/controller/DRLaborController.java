@@ -38,6 +38,11 @@ public class DRLaborController
 	@Autowired
 	AdminService adminserv;
 	
+	@RequestMapping("/login")
+	public String login() {
+		return "login";
+	}
+	
 	@RequestMapping("/admin")
 	public String adminMain() {
 		return "admin_main";

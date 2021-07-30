@@ -22,7 +22,7 @@ public class Contractor implements Serializable
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	int id;
 	String name;
-	
+	String username;
 	@NotBlank
 	@Size(min=8, message="password must contains 8 character")	
 	String password;
@@ -32,9 +32,22 @@ public class Contractor implements Serializable
 	@OneToMany(mappedBy= "contractor",fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	private Set<Timecard> timecard;
 	
+	
 	public Contractor() {
 		
 	}
+	
+	
+	public String getUsername() {
+		return username;
+	}
+
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+
 	public int getId() {
 		return id;
 	}
@@ -59,38 +72,6 @@ public class Contractor implements Serializable
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-//	public Set<Job> getJobs() {
-//		return job;
-//	}
-//	public void setJobs(Set<Job> job) {
-//		this.job = job;
-//	}
-//	public Set<Machine> getMachines() {
-//		return machine;
-//	}
-//	public void setMachines(Set<Machine> machine) {
-//		this.machine = machine;
-//	}
-//	public Set<Timecard> getTimecard() {
-//		return timecard;
-//	}
-//	public void setTimecard(Set<Timecard> timecard) {
-//		this.timecard = timecard;
-//	}
-//	public Set<Job> getJob() {
-//		return job;
-//	}
-//	public void setJob(Set<Job> job) {
-//		this.job = job;
-//	}
-//	public Set<Machine> getMachine() {
-//		return machine;
-//	}
-//	public void setMachine(Set<Machine> machine) {
-//		this.machine = machine;
-//	}
-//	
 
 	@Override
 	public String toString() {
