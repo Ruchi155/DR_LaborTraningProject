@@ -11,37 +11,32 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.example.DRAPI.model.Admin;
 import com.example.DRAPI.service.UserServiceImpl;
-import com.example.DRAPI.web.dto.AdminRegistrationDto;
-import com.example.DRAPI.web.dto.ContractorRegistrationDto;
+import com.example.DRAPI.web.dto.UserRegistrationDto;
+import com.example.DRAPI.model.User;
 @Controller
 @RequestMapping("/registration")
 public class UserRegistrationController {
 	
 	@Autowired
-	private UserServiceImpl uService;
-	
-	@ModelAttribute("admin")
-	public AdminRegistrationDto adminRegistration() {
-		return new AdminRegistrationDto();
-	}
-	@ModelAttribute("contractor")
-	public ContractorRegistrationDto contractorRegistration() {
-		return new ContractorRegistrationDto();
-	}
-	
-//	@ModelAttribute("")
-	@GetMapping
+    private UserServiceImpl userService;
+
+    @ModelAttribute("user")
+    public UserRegistrationDto userRegistrationDto() {
+        return new UserRegistrationDto();
+    }
+
+    @GetMapping
     public String showRegistrationForm(Model model) {
         return "registration";
     }
-	
-	@PostMapping
-    public String registerUserAccount(@ModelAttribute("user") @Valid AdminRegistrationDto userDto,
+
+    @PostMapping
+    public String registerUserAccount(@ModelAttribute("user") @Valid UserRegistrationDto userDto,
                                       BindingResult result){
 
-        Admin existing = uService.findAdminByUsername(userDto.getUsername());
+        User existing = userService.findUserByEmail(userDto.getEmail());
+        
         if (existing != null){
             result.rejectValue("email", null, "There is already an account registered with that email");
         }
@@ -50,7 +45,8 @@ public class UserRegistrationController {
             return "registration";
         }
 
-        uService.save(userDto);
+        userService.save(userDto);
         return "redirect:/registration?success";
     }
+
 }

@@ -26,7 +26,7 @@ public class Timecard implements Serializable {
 	
 	@ManyToOne
 	@JoinColumn(name = "contractor_id")
-	private Contractor contractor;
+	private User contractor;
 	
 	private double totalHours;
 	
@@ -47,7 +47,7 @@ public class Timecard implements Serializable {
 	public Timecard() {
 		
 	}
-	public Timecard(String siteCode, Contractor contractor, double totalHours, double totalAmount) {
+	public Timecard(String siteCode, User contractor, double totalHours, double totalAmount) {
 		super();
 		this.siteCode = siteCode;
 		this.contractor = contractor;
@@ -63,11 +63,11 @@ public class Timecard implements Serializable {
 		this.siteCode = siteCode;
 	}
 
-	public Contractor getContractor() {
+	public User getContractor() {
 		return contractor;
 	}
 
-	public void setContractor(Contractor contractor) {
+	public void setContractor(User contractor) {
 		this.contractor = contractor;
 	}
 
