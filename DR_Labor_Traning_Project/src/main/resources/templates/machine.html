@@ -22,7 +22,7 @@
 				<a class="navbar-brand" href="#" th:href="@{/}">Disaster Recovery</a>
 			</div>
 			<ul class="nav navbar-nav">
-						<li sec:authorize="isAuthenticated()"><a th:href="@{/login}">Logout</a></li>
+						<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
 			</ul>
 		</div>
 	</nav>
@@ -31,9 +31,9 @@
 	</br>
 	<div class="row row-no-gutters" style="height: 95vh; ">
 		<div class="col-xs-6 col-md-3" style="height:100%;background-color:whitesmoke">
-			<button type="button" class="btn btn-outline-primary" style="height:50px; width: 100%; margin-top:5px;"><a href="list_timecards">TimeSheet Approval</a></button>
-			<button type="button" class="btn btn-outline-primary" style="height:50px; width: 100%;  margin-top:5px;"><a href="list_jobs">Job Code Management</a></button>
-			<button type="button" class="btn btn-outline-primary" style="height:50px; width: 100%;  margin-top:5px;"><a href="list_machines">Machine Management</a></button>
+			<button type="button" class="btn btn-outline-primary" style="height:50px; width: 100%; margin-top:5px;"><a th:href="@{/admin/list_timecards}">TimeSheet Approval</a></button>
+			<button type="button" class="btn btn-outline-primary" style="height:50px; width: 100%;  margin-top:5px;"><a th:href="@{/admin/list_jobs}">Job Code Management</a></button>
+			<button type="button" class="btn btn-outline-primary" style="height:50px; width: 100%;  margin-top:5px;"><a th:href="@{/admin/list_machines}">Machine Management</a></button>
 		</div>
 	  	<div class="col-xs-12 col-md-8">
 	  		<table border=1 bgcolor="silver" align="center" cellpadding="6",cellspacing ="6">
@@ -55,14 +55,14 @@
 					
 				<!--   <td><a th:href="@{/country_details/{name}(name=${country.name})}">view</a></td> -->
 				
-				<td><a th:href="@{/editmachine/{id}(id=${machine.id})}">edit</a></td>
-				<td><a th:href="@{/deletemachine/{id}(id=${machine.id})}">delete</a></td>
+				<td><a th:href="@{/admin/editmachine/{id}(id=${machine.id})}">edit</a></td>
+				<td><a th:href="@{/admin/deletemachine/{id}(id=${machine.id})}">delete</a></td>
 				</tr>
 				
 				</table>
 				<br>
 				<br>
-				 <center><a href="/newmachine">Add New Machine</a></center>
+				 <center><a th:href="@{/admin/newmachine}">Add New Machine</a></center>
 	  	</div>
 	</div>
 		
