@@ -35,33 +35,30 @@
 			<button type="button" class="btn btn-outline-primary" style="height:50px; width: 100%; margin-top:5px;"><a href="contractor_timecards">TimeSheet Management</a></button>
 		</div>
 	  	<div class="col-xs-12 col-md-8">
-		<table border=1 bgcolor="silver" align="center" cellpadding="6",cellspacing ="6">
 		
 		<br><br><br>
 		<h2 align="center">Timesheet Approval</h2>
-		<tr>
-		<th>SiteCode</th>
-		<!--  <th>ContractorName</th> -->
-		<th>TotalHrs</th>
-		<th>TotalAmount</th>
 		
-		</tr>
-		<tr th:each="timecard:${timecards}">
-		<td th:text="${timecard.siteCode}">SiteCode</td>
-		<td th:text="${timecard.totalHours}">Total Hours</td>
-		<td th:text="${timecard.totalAmount}">Total Amount</td>	
-		
-		<!--  <td th:text="${timecard.contractor}">Contractor Name</td>-->
-			
-		<!--   <td><a th:href="@{/country_details/{name}(name=${country.name})}">view</a></td> -->
-		
-		<td><a th:href="@{/contractor/edittimecard/{id}(id=${timecard.id})}">edit</a></td>
-		<td><a th:href="@{/contractor/deletetimecard/{id}(id=${timecard.id})}">delete</a></td>
-		</tr>
-		
+		<br>
+		<br>	
+		<table class="table">
+		  <thead>
+		    <tr>
+		      <th scope="col">Site Code</th>
+		      <th scope="col">Total Hours</th>
+		      <th scope="col">Total Amount</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <tr th:each="timecard:${timecards}">
+			    <td th:text="${timecard.siteCode}"/>
+				<td th:text="${timecard.totalHours}"/>
+				<td th:text="${timecard.totalAmount}"/>
+				<td><a th:href="@{/contractor/edittimecard/{id}(id=${timecard.id})}">edit</a></td>
+				<td><a th:href="@{/contractor/deletetimecard/{id}(id=${timecard.id})}">delete</a></td>
+		    </tr>
+		  </tbody>
 		</table>
-		<br>
-		<br>
 		 <center><a href="/contractor/newtimecard">Add New Timecard</a></center>
 		</div>
 		</div>

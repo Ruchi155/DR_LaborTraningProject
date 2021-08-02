@@ -41,26 +41,25 @@
 		
 		<br><br><br>
 		<h2 align="center">Timesheet Approval</h2>
-		<tr>
-		<th>SiteCode</th>
-		<!--  <th>ContractorName</th> -->
-		<th>TotalHrs</th>
-		<th>TotalAmount</th>
-		<th>Approved</th>
-		</tr>
-		<tr th:each="timecard:${timecards}">
-		<td th:text="${timecard.siteCode}">SiteCode</td>
-		<td th:text="${timecard.totalHours}">Total Hours</td>
-		<td th:text="${timecard.totalAmount}">Total Amount</td>	
-		<td th:text="${timecard.approved}">Approved</td>	
-		<!--  <td th:text="${timecard.contractor}">Contractor Name</td>-->
-			
-		<!--   <td><a th:href="@{/country_details/{name}(name=${country.name})}">view</a></td> -->
+
 		
-		<td><a th:href="@{/admin/approveTimecard/{id}(id=${timecard.id})}">Approve</a></td>
-		<td><a th:href="@{/admin/disapproveTimecard/{id}(id=${timecard.id})}">Disapprove</a></td>
-		</tr>
 		
+		<table class="table">
+		  <thead>
+		    <tr>
+		      <th scope="col">Site Code</th>
+		      <th scope="col">Total Hours</th>
+		      <th scope="col">Total Amount</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <tr th:each="timecard:${timecards}">
+			    <td th:text="${timecard.siteCode}"/>
+				<td th:text="${timecard.totalHours}"/>
+				<td th:text="${timecard.totalAmount}"/>	
+				<td><a th:text="${timecard.approved} ? 'Finalized' : 'Review'" th:href="@{/admin/timecards/review/{id}(id=${timecard.id})}"></a></td>
+		    </tr>
+		  </tbody>
 		</table>
 		<br>
 		<br>
