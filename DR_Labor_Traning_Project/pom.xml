@@ -12,6 +12,7 @@
 	<artifactId>DRAPI</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>DRLaborTrainingAPI</name>
+	<packaging>war</packaging>
 	<description>DRAPI</description>
 	<properties>
 		<java.version>1.8</java.version>
