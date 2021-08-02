@@ -5,7 +5,7 @@
 <head>
 		<link rel="stylesheet" type="text/css"
 			th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
-			<title>Admin</title>
+			<title>Contractor</title>
 	</head>
 	<body>	
 	
@@ -19,10 +19,10 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#" th:href="@{/}">Disaster Recovery</a>
+				<a class="navbar-brand" href="#" th:href="@{/contractor}">Disaster Recovery</a>
 			</div>
 			<ul class="nav navbar-nav">
-						<li sec:authorize="isAuthenticated()"><a th:href="@{/login}">Logout</a></li>
+						<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
 			</ul>
 		</div>
 	</nav>
@@ -31,12 +31,10 @@
 	</br>
 		<div class="row row-no-gutters" style="height: 95vh; ">
 			<div class="col-xs-6 col-md-3" style="height:100%;background-color:whitesmoke">
-				<button type="button" class="btn btn-outline-primary" style="height:50px; width: 100%; margin-top:5px;"><a href="list_timecards">TimeSheet Approval</a></button>
-				<button type="button" class="btn btn-outline-primary" style="height:50px; width: 100%;  margin-top:5px;"><a href="list_jobs">Job Code Management</a></button>
-				<button type="button" class="btn btn-outline-primary" style="height:50px; width: 100%;  margin-top:5px;"><a href="list_machines">Machine Management</a></button>
+				<button type="button" class="btn btn-outline-primary" style="height:50px; width: 100%; margin-top:5px;"><a href="list_timecards">TimeSheet Management</a></button>
 			</div>
 			<div class="col-xs-12 col-md-8">
-				<form th:action="@{/savetimecard}" th:object="${timecard}" Method="Post">
+				<form th:action="@{/contractor/savetimecard}" th:object="${timecard}" Method="Post">
 				ID:<input type="text" th:field="*{id}" readonly=readonly/>
 				Site Code:<input type="text" th:field="*{siteCode}"/><br><br>
 				Total Hours:<input type="text" th:field="*{totalHours}" /><br><br>

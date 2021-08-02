@@ -26,6 +26,17 @@ public class UserRegistrationDto {
     @NotEmpty
     private String username;
     
+    public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	@NotEmpty
+    private String role;
+    
     public String getUsername() {
 		return username;
 	}

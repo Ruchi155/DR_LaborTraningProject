@@ -21,7 +21,7 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#" th:href="@{/login}">Disaster Recovery Labor Training</a>
+				<a class="navbar-brand" href="#" th:href="@{/logout}">Disaster Recovery Labor Training</a>
 			</div>
 			
 		</div>
@@ -96,6 +96,12 @@
 						<p class="error-message"
 							th:each="error : ${#fields.errors('confirmPassword')}"
 							th:text="${error}">Validation error</p>
+					</div>
+					<div class="form-group">
+						<select th:field="*{role}">
+						    <option th:value="Admin" th:text="Admin"></option>
+						    <option th:value="Contractor" th:text="Contractor"></option>
+						</select>
 					</div>
 					<div class="form-group"
 						th:classappend="${#fields.hasErrors('terms')}? 'has-error':''">
