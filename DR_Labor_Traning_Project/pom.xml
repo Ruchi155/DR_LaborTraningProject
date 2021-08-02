@@ -12,7 +12,8 @@
 	<groupId>com.example</groupId>
 	<artifactId>DRAPI</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<!--  For EC2 deployment -->
+	 <packaging>war</packaging> 
 	<name>DRLaborTrainingAPI</name>
 	<description>DRAPI</description>
 	
@@ -70,7 +71,6 @@
 		<dependency>
 		    <groupId>junit</groupId>
 		    <artifactId>junit</artifactId>
-		    <version>4.13.2</version>
 		    <scope>test</scope>
 		</dependency>
 		
@@ -100,10 +100,58 @@
 		  <artifactId>commons-beanutils</artifactId>
 		  <version>1.9.4</version>
 		</dependency>
+		
+		
 	</dependencies>
+	
+	
 
 <build>
-<finalName>DR_LaborAPP</finalName>
-</build>
+		<finalName>DR_Labor_Training_application-mysql</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<!-- Dockerfile Maven -->
+			<!-- https://github.com/spotify/dockerfile-maven -->
+ 			<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>dockerfile-maven-plugin</artifactId>
+				<version>1.4.10</version>
+				<executions>
+					<execution>
+						<id>default</id>
+						<goals>
+							<goal>build</goal>
+							 <!-- <goal>push</goal> -->
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<repository>mishri/${project.name}</repository>
+					<tag>${project.version}</tag>
+					<skipDockerInfo>true</skipDockerInfo>
+				</configuration>
+			</plugin>
+
+		</plugins>
+	</build>
+
+	<repositories>
+		<repository>
+			<id>spring-milestones</id>
+			<name>Spring Milestones</name>
+			<url>https://repo.spring.io/milestones</url>
+		</repository>
+	</repositories>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>spring-milestones</id>
+			<name>Spring Milestones</name>
+			<url>https://repo.spring.io/milestones</url>
+		</pluginRepository>
+	</pluginRepositories>
 
 </project>
