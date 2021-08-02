@@ -1,0 +1,49 @@
+version: '3.7'
+# Removed subprocess.CalledProcessError: Command '['/usr/local/bin/docker-credential-desktop', 'get']' returned non-zero exit status 1
+# I had this:
+# cat ~/.docker/config.json
+# {"auths":{},"credsStore":"", "credsStore":"desktop","stackOrchestrator":"swarm"}
+# I updated to this:
+# {"auths":{},"credsStore":"","stackOrchestrator":"swarm"}
+services:
+  dr-labor-application:
+    image: mishri/dr_labor_traning_project:0.0.1-SNAPSHOT
+    #build:
+      #context: .
+      #dockerfile: Dockerfile
+    ports:
+      - "8060:8060"
+    restart: always
+    depends_on: # Start the depends_on first
+      - mysql 
+    environment:
+      RDS_HOSTNAME: drlabor.cr17cofhyq68.us-east-2.rds.amazonaws.com
+      RDS_PORT: 3306
+      RDS_DB_NAME: DR_Labor
+      RDS_USERNAME: root
+      RDS_PASSWORD: root1234
+    networks:
+      - dr_labor_application-network
+
+  mysql:
+    image: mysql:5.7
+    ports:
+      - "3306:3306"
+    restart: always
+    environment:
+    
+      MYSQL_ROOT_PASSWORD: root1234
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root1234
+      MYSQL_DATABASE: DR_Labor
+    volumes:
+      - mysql-database-data-volume:/var/lib/mysql
+    networks:
+      - dr_labor_application_network  
+  
+# Volumes
+volumes:
+  mysql-database-data-volume:
+
+networks:
+  dr_labor_application-network:
