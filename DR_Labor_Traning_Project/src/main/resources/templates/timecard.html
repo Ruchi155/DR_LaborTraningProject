@@ -20,10 +20,10 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#" th:href="@{/}">Disaster Recovery</a>
+				<a class="navbar-brand" href="#" th:href="@{/admin}">Disaster Recovery</a>
 			</div>
 			<ul class="nav navbar-nav">
-						<li sec:authorize="isAuthenticated()"><a th:href="@{/login}">Logout</a></li>
+						<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
 			</ul>
 		</div>
 	</nav>
@@ -32,35 +32,34 @@
 	</br>
 	<div class="row row-no-gutters" style="height: 95vh; ">
 		<div class="col-xs-6 col-md-3" style="height:100%;background-color:whitesmoke">
-			<button type="button" class="btn btn-outline-primary" style="height:50px; width: 100%; margin-top:5px;"><a href="list_timecards">TimeSheet Approval</a></button>
-			<button type="button" class="btn btn-outline-primary" style="height:50px; width: 100%;  margin-top:5px;"><a href="list_jobs">Job Code Management</a></button>
-			<button type="button" class="btn btn-outline-primary" style="height:50px; width: 100%;  margin-top:5px;"><a href="list_machines">Machine Management</a></button>
+			<button type="button" class="btn btn-outline-primary" style="height:50px; width: 100%; margin-top:5px;"><a th:href="@{/admin/list_timecards}">TimeSheet Approval</a></button>
+			<button type="button" class="btn btn-outline-primary" style="height:50px; width: 100%;  margin-top:5px;"><a th:href="@{/admin/list_jobs}">Job Code Management</a></button>
+			<button type="button" class="btn btn-outline-primary" style="height:50px; width: 100%;  margin-top:5px;"><a th:href="@{/admin/list_machines}">Machine Management</a></button>
 		</div>
 	  	<div class="col-xs-12 col-md-8">
 		<table border=1 bgcolor="silver" align="center" cellpadding="6",cellspacing ="6">
 		
 		<br><br><br>
 		<h2 align="center">Timesheet Approval</h2>
-		<tr>
-		<th>SiteCode</th>
-		<!--  <th>ContractorName</th> -->
-		<th>TotalHrs</th>
-		<th>TotalAmount</th>
+
 		
-		</tr>
-		<tr th:each="timecard:${timecards}">
-		<td th:text="${timecard.siteCode}">SiteCode</td>
-		<td th:text="${timecard.totalHours}">Total Hours</td>
-		<td th:text="${timecard.totalAmount}">Total Amount</td>	
 		
-		<!--  <td th:text="${timecard.contractor}">Contractor Name</td>-->
-			
-		<!--   <td><a th:href="@{/country_details/{name}(name=${country.name})}">view</a></td> -->
-		
-		<td><a th:href="@{/edittimecard/{id}(id=${timecard.id})}">edit</a></td>
-		<td><a th:href="@{/deletetimecard/{id}(id=${timecard.id})}">delete</a></td>
-		</tr>
-		
+		<table class="table">
+		  <thead>
+		    <tr>
+		      <th scope="col">Site Code</th>
+		      <th scope="col">Total Hours</th>
+		      <th scope="col">Total Amount</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <tr th:each="timecard:${timecards}">
+			    <td th:text="${timecard.siteCode}"/>
+				<td th:text="${timecard.totalHours}"/>
+				<td th:text="${timecard.totalAmount}"/>	
+				<td><a th:text="${timecard.approved} ? 'Finalized' : 'Review'" th:href="@{/admin/timecards/review/{id}(id=${timecard.id})}"></a></td>
+		    </tr>
+		  </tbody>
 		</table>
 		<br>
 		<br>

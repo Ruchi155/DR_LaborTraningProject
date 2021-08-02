@@ -32,6 +32,14 @@ public class Timecard implements Serializable {
 	
 	private double totalAmount;
 	
+	private boolean approved;
+	
+	public boolean isApproved() {
+		return approved;
+	}
+	public void setApproved(boolean approved) {
+		this.approved = approved;
+	}
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name="timecards_machines", 
 		joinColumns = {@JoinColumn(name = "timecard_id")},
