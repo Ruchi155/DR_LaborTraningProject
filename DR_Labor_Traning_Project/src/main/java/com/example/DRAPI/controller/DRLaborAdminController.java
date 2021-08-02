@@ -50,20 +50,29 @@ public class DRLaborAdminController {
 		return "timecard";	
 	}
 	
+	@RequestMapping("timecards/review/{id}")
+	public ModelAndView finalizeTimecards(@PathVariable(name="id") int id) {
+		ModelAndView mav= new ModelAndView("view_timecard");
+		Timecard t = timecardserv.get(id);
+		mav.addObject("timecard",t);
+		return mav;
+	}
+	
 	@RequestMapping(value= "/savetimecard", method=RequestMethod.POST)
 	public String saveTimecard(@ModelAttribute("timecard") Timecard tc)
 	{
 		timecardserv.SaveTimecard(tc);
 		return "redirect:/list_timecards";
 	}
-	@RequestMapping("/approveTimecard/{id}")
+	@RequestMapping(value="/timecards/review/{id}/approveTimecard")
 	public String approveTimecardPage(@PathVariable(name="id") int id)
 	{
+		
 		timecardserv.approveTimecard(id);
 		return "redirect:/admin/list_timecards";
 	}
 	
-	@RequestMapping("/disapproveTimecard/{id}")
+	@RequestMapping(value="/timecards/review/{id}/disapproveTimecard")
 	public String disapproveTimecardPage(@PathVariable(name="id") int id)
 	{
 		timecardserv.disapproveTimecard(id);
