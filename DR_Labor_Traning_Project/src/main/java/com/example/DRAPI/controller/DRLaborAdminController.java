@@ -56,7 +56,19 @@ public class DRLaborAdminController {
 		timecardserv.SaveTimecard(tc);
 		return "redirect:/list_timecards";
 	}
+	@RequestMapping("/approveTimecard/{id}")
+	public String approveTimecardPage(@PathVariable(name="id") int id)
+	{
+		timecardserv.approveTimecard(id);
+		return "redirect:/admin/list_timecards";
+	}
 	
+	@RequestMapping("/disapproveTimecard/{id}")
+	public String disapproveTimecardPage(@PathVariable(name="id") int id)
+	{
+		timecardserv.disapproveTimecard(id);
+		return "redirect:/admin/list_timecards";
+	}
 	//JOB
 	
 	@RequestMapping("list_jobs")

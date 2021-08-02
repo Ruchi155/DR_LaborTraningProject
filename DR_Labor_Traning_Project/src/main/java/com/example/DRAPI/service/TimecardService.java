@@ -11,4 +11,6 @@ public interface TimecardService {
 	public List<Timecard> getAllTimecards();
 	public void SaveTimecard(Timecard tc);
 	public Timecard get(int id);
+	public void approveTimecard(int id);
+	public void disapproveTimecard(int id);
 }

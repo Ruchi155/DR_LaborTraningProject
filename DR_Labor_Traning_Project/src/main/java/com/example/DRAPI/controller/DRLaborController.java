@@ -72,7 +72,11 @@ public class DRLaborController
 
 	    return " login";
 	}
-	
+	@RequestMapping()
+	public String main() {
+		return "login";
+		
+	}
 	@RequestMapping("/login")
 	public String login() {
 		return "login";

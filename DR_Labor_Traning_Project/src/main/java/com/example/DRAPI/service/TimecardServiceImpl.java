@@ -50,4 +50,19 @@ public class TimecardServiceImpl implements TimecardService {
 	public Timecard get(int i) {
 		return repo.findById(i).get();
 	}
+
+	@Override
+	public void approveTimecard(int id) {
+		Timecard t = repo.getById(id);
+		t.setApproved(true);
+		repo.save(t);
+		System.out.println(t.isApproved());
+	}
+	@Override
+	public void disapproveTimecard(int id) {
+		Timecard t = repo.getById(id);
+		t.setApproved(false);
+		repo.save(t);
+		System.out.println(t.isApproved());
+	}
 }
