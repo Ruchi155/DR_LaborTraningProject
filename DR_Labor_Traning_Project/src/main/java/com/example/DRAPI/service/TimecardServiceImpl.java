@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.DRAPI.model.Timecard;
+import com.example.DRAPI.model.User;
 import com.example.DRAPI.repo.TimecardRepo;
 @Service
 public class TimecardServiceImpl implements TimecardService {
@@ -49,5 +50,25 @@ public class TimecardServiceImpl implements TimecardService {
 	@Override
 	public Timecard get(int i) {
 		return repo.findById(i).get();
+	}
+
+	@Override
+	public void approveTimecard(int id) {
+		Timecard t = repo.getById(id);
+		t.setApproved(true);
+		repo.save(t);
+		System.out.println(t.isApproved());
+	}
+	@Override
+	public void disapproveTimecard(int id) {
+		Timecard t = repo.getById(id);
+		t.setApproved(false);
+		repo.save(t);
+		System.out.println(t.isApproved());
+	}
+
+	@Override
+	public List<Timecard> getTimecardsByUser(User u) {
+		return repo.findTimecardByUser(u);
 	}
 }

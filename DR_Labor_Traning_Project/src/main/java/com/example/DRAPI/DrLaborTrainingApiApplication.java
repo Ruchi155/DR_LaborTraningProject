@@ -2,12 +2,21 @@ package com.example.DRAPI;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 @SpringBootApplication
-public class DrLaborTrainingApiApplication {
-
+public class DrLaborTrainingApiApplication extends SpringBootServletInitializer 
+{
 	public static void main(String[] args) {
 		SpringApplication.run(DrLaborTrainingApiApplication.class, args);
 	}
-
+	
+	@Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder)
+	{
+		return builder.sources(DrLaborTrainingApiApplication.class);
+		
+	}
+	
 }

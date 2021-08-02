@@ -7,45 +7,59 @@
 		<title>Admin</title>
 	</head>
 	<body>	
-			<div class="row row-no-gutters" style="height: 5vh; background-color:gray;">
-		<div>
-			<h3 style="margin-left:50px">Disaster Recovery Application</h4>
-		 </div>
-	</div>
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#" th:href="@{/admin}">Disaster Recovery</a>
+			</div>
+			<ul class="nav navbar-nav">
+						<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
+			</ul>
+		</div>
+	</nav>
+	</br>
+	</br>
+	</br>
 	<div class="row row-no-gutters" style="height: 95vh; ">
 		<div class="col-xs-6 col-md-3" style="height:100%;background-color:whitesmoke">
-			<button type="button" class="btn btn-outline-primary" style="height:50px; width: 100%; margin-top:5px;"><a href="list_timecards">TimeSheet Approval</a></button>
-			<button type="button" class="btn btn-outline-primary" style="height:50px; width: 100%;  margin-top:5px;"><a href="list_jobs">Job Code Management</a></button>
-			<button type="button" class="btn btn-outline-primary" style="height:50px; width: 100%;  margin-top:5px;"><a href="list_machines">Machine Management</a></button>
+			<button type="button" class="btn btn-outline-primary" style="height:50px; width: 100%; margin-top:5px;"><a th:href="@{/admin/list_timecards}">TimeSheet Approval</a></button>
+			<button type="button" class="btn btn-outline-primary" style="height:50px; width: 100%;  margin-top:5px;"><a th:href="@{/admin/list_jobs}">Job Code Management</a></button>
+			<button type="button" class="btn btn-outline-primary" style="height:50px; width: 100%;  margin-top:5px;"><a th:href="@{/admin/list_machines}">Machine Management</a></button>
 		</div>
 	  	<div class="col-xs-12 col-md-8">
-	  		<table border=1 bgcolor="silver" align="center" cellpadding="6",cellspacing ="6">
-		
 			<br><br><br>
 			<h2 align="center">Job Code Management</h2>
-			<tr>
-			<th>JobCode</th>
-			<th>Description</th> 
-			<th>HourlyRate</th>
-			<th>MaxHoursPerDay</th>
-			
-			</tr>
-			<tr th:each="job:${jobs}">
-			<td th:text="${job.jobCode}">JobCode</td>
-			<td th:text="${job.description}">Description</td>
-			<td th:text="${job.hourlyRate}">HourlyRate</td>	
-			<td th:text="${job.maxHoursPerDay}">MaxHoursPerDay</td>
-				
-			<!--   <td><a th:href="@{/country_details/{name}(name=${country.name})}">view</a></td> -->
-			
-			<td><a th:href="@{/editjob/{id}(id=${job.id})}">edit</a></td>
-			<td><a th:href="@{/deletejob/{id}(id=${job.id})}">delete</a></td>
-			</tr>
-			
+			<br>
+			<table class="table">
+			  <thead>
+			    <tr>
+			    	<th scope="col">Max Hours Per Day</th>
+			      	<th scope="col">Description</th>
+			      	<th scope="col">Hourly Rate</th>
+			      	<th scope="col">Max Hours Per Day</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    <tr th:each="job:${jobs}">
+					<td th:text="${job.jobCode}"/>
+					<td th:text="${job.description}"/>
+					<td th:text="${job.hourlyRate}"/>	
+					<td th:text="${job.maxHoursPerDay}"/>
+					<td><a th:href="@{/admin/editjob/{id}(id=${job.id})}">edit</a></td>
+					<td><a th:href="@{/admin/deletejob/{id}(id=${job.id})}">delete</a></td>
+				</tr>
+			  </tbody>
 			</table>
 			<br>
 			<br>
-			 <center><a href="/newjob">Add New Job</a></center>
+			 <center><a th:href="@{/admin/newjob}">Add New Job</a></center>
 	  	</div>
 	</div>
 		
