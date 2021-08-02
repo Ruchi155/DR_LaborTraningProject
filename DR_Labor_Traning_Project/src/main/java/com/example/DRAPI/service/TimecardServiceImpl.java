@@ -22,8 +22,10 @@ public class TimecardServiceImpl implements TimecardService {
 //		temp.setContract(t.getContract());
 		temp.setContractor(t.getContractor());
 		temp.setSiteCode(t.getSiteCode());
-		temp.setTotalAmount(t.getTotalAmount());
-		temp.setTotalHours(t.getTotalHours());
+		temp.setTotalAmountjob(t.getTotalAmountjob());
+		temp.setTotalHoursJob(t.getTotalHoursJob());
+		temp.setTotalAmountMachine(t.getTotalAmountMachine());
+		temp.setTotalHoursMachine(t.getTotalHoursMachine());
 		repo.save(temp);
 	}
 

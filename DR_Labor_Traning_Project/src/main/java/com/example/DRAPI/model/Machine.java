@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -31,7 +32,7 @@ public class Machine implements Serializable
 	
 	private double maxHoursPerDay;
 	
-	@ManyToMany(cascade=CascadeType.ALL,mappedBy = "machines", fetch = FetchType.LAZY)
+	@OneToMany(cascade=CascadeType.ALL,mappedBy = "machine", fetch = FetchType.LAZY)
 	private Set<Timecard> timecards;
 
 	public Machine() {

@@ -30,6 +30,7 @@
 				<button type="button" class="btn btn-outline-primary" style="height:50px; width: 100%;  margin-top:5px;"><a href="list_machines">Machine Management</a></button>
 			</div>
 			<div class="col-xs-12 col-md-8">
+<<<<<<< Updated upstream
 				<form th:action="@{/savetimecard}" th:object="${timecard}" Method="Post">
 				ID:<input type="text" th:field="*{id}" readonly=readonly/>
 				Site Code:<input type="text" th:field="*{siteCode}"/><br><br>
@@ -37,6 +38,62 @@
 				Total Amount:<input type= "text" th:field="*{TotalAmount}" />
 				<button type="submit">Update</button>
 			</form>
+=======
+	
+			
+			<form th:action="@{/contractor/saveTimecardEdit/{id}(id=${timecard.id})}" th:object="${timecard}" Method="Post">
+
+			<div class="mb-5">
+				<label class="form-label">Contractor</label>
+    			<input type="text" class="form-control" th:value="${contractor.firstName} + ' ' + ${contractor.lastName}" readonly="readonly"/>
+			 	<label class="form-label">Site Code</label>
+    			<input type="text" class="form-control" th:field="*{siteCode}"/>
+			</div>
+			<br>
+			<br>
+			<div class="mb-3">
+				<label class="form-label">Labor</label>
+				<select th:object="${job}" class="form-select form-select-lg mb-3">
+					<option th:each="i : ${labor}" th:value="${i}" th:text="${i}"></option>
+				</select>
+			</div>
+			<br>
+			<br>
+			<div class="mb-3">
+				<label class="form-label">Total Hours</label>
+				<input type="text" th:field="*{totalHoursJob}"/>
+			</div>
+			<br>
+			<br>
+			<div class="mb-3">
+				<label class="form-label">Total Amount</label>
+				<input type= "text" th:field="*{totalAmountjob}"/>
+			</div>
+			<br>
+			<br>
+			<div class="mb-3">
+				<label class="form-label">Machine</label>
+				<select th:object="${machine}" class="form-select form-select-lg mb-3">
+					<option th:each="i : ${machines}" th:value="${i}" th:text="${i}"></option>
+				</select>
+			</div>
+			<br>
+			<br>
+			<div class="mb-3">
+				<label class="form-label">Total Hours</label>
+				<input type="text" th:field="*{totalHoursMachine}"/>
+			</div>
+			<br>
+			<br>
+			<div class="mb-3">
+				<label class="form-label">Total Amount</label>
+				<input type= "text" th:field="*{totalAmountMachine}"/>
+			</div>
+			<br>
+			<br>
+			<button type="submit">Save</button>
+		</form>
+>>>>>>> Stashed changes
 			</div>
 		</div>
 	</body>

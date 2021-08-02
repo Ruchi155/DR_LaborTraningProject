@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+			xmlns:th="http://www.thymeleaf.org">
+			
+			
+		<head>
+		<link rel="stylesheet" type="text/css"
+			th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
+			<title>Admin</title>
+	</head>
+	<body>	
+	
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#" th:href="@{/admin}">Disaster Recovery</a>
+			</div>
+			<ul class="nav navbar-nav">
+						<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
+			</ul>
+		</div>
+	</nav>
+	</br>
+	</br>
+	</br>
+	<div class="row row-no-gutters" style="height: 95vh; ">
+		<div class="col-xs-6 col-md-3" style="height:100%;background-color:whitesmoke">
+			<button type="button" class="btn btn-outline-primary" style="height:50px; width: 100%; margin-top:5px;"><a th:href="@{/admin/list_timecards}">TimeSheet Approval</a></button>
+			<button type="button" class="btn btn-outline-primary" style="height:50px; width: 100%;  margin-top:5px;"><a th:href="@{/admin/list_jobs}">Job Code Management</a></button>
+			<button type="button" class="btn btn-outline-primary" style="height:50px; width: 100%;  margin-top:5px;"><a th:href="@{/admin/list_machines}">Machine Management</a></button>
+		</div>
+	  	<div class="col-xs-12 col-md-8">
+		<table border=1 bgcolor="silver" align="center" cellpadding="6",cellspacing ="6">
+		
+		<br><br><br>
+		<h2 align="center">Timesheet Approval</h2>
+			<table class="table">
+			  <thead>
+			    <tr>
+			    	<th scope="col">Name</th>
+			      	<th scope="col">Site Code</th>
+			      	<th scope="col">Total Hours</th>
+			      	<th scope="col">Total Amount</th>
+			      	<th scope="col">Total Machine Hours</th>
+			      	<th scope="col">Total Machine Amount</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    <tr>
+				    <td th:text="${user.firstName} + ' ' + ${user.lastName} "/>
+					<td th:text="${timecard.totalHoursJob}"/>
+					<td th:text="${timecard.totalAmountjob}"/>
+					<td th:text="${timecard.totalHoursMachine}"/>
+					<td th:text="${timecard.totalAmountMachine}"/>
+			    </tr>
+			  </tbody>
+			</table>
+			<a class="btn btn-primary" th:href="@{/admin/timecards/review/{id}/approveTimecard(id=${timecard.id})}" role="button">Approve</a>
+			<a class="btn btn-primary" th:href="@{/admin/timecards/review/{id}/disapproveTimecard(id=${timecard.id})}" role="button">Disapprove</a>
+		<br>
+		<br>
+		</div>
+		</div>
+		</body>
+</html>
