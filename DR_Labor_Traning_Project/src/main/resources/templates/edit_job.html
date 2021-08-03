@@ -37,7 +37,7 @@
 			</div>
 			  	<div class="col-xs-12 col-md-8">
 				
-				<form th:action="@{/admin/savejob}" th:object="${job}" Method="Post">
+				<form th:action="@{/admin/savejob/{id}(id=${job.id})}" th:object="${job}" Method="Post">
 		
 					<div class="mb-5">
 					 	<label class="form-label">Job Code</label>
