@@ -112,9 +112,8 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-			</plugins>
 			<!-- Dockerfile Maven -->
-			<!-- https://github.com/spotify/dockerfile-maven 
+			<!--  https://github.com/spotify/dockerfile-maven -->
  			<plugin>
 				<groupId>com.spotify</groupId>
 				<artifactId>dockerfile-maven-plugin</artifactId>
@@ -137,10 +136,10 @@
 				</configuration>
 			</plugin>
 
-		</plugins> -->
+		</plugins> 
 	</build>
 
-	<!--   <repositories>
+	  <repositories>
 		<repository>
 			<id>spring-milestones</id>
 			<name>Spring Milestones</name>
@@ -155,6 +154,6 @@
 			<url>https://repo.spring.io/milestones</url>
 		</pluginRepository>
 
-	</pluginRepositories>    -->
+	</pluginRepositories>    
 
 </project>
