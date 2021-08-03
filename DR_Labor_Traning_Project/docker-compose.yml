@@ -6,13 +6,13 @@ version: '3.7'
 # I updated to this:
 # {"auths":{},"credsStore":"","stackOrchestrator":"swarm"}
 services:
-  dr-labor-application:
-    image: mishri/DR_Labor_Training_Project-mysql:0.0.1-SNAPSHOT
-    build:
-      context: .
-      dockerfile: Dockerfile
+   dr-labor-application:
+    image: mishri/dr_labor_traning_project:0.0.1-SNAPSHOT
+    #build:
+      #context: .
+      #dockerfile: Dockerfile
     ports:
-      - "8070:8070"
+      - "8060:8060"
     restart: always
     depends_on: # Start the depends_on first
       - mysql 
@@ -23,9 +23,10 @@ services:
       RDS_USERNAME: root
       RDS_PASSWORD: root1234
     networks:
-      - dr-labor-application-network
-
-  mysql:
+      - dr_labor_application-network
+      
+      
+   mysql:
     image: mysql:5.7
     ports:
       - "3306:3306"
@@ -39,11 +40,11 @@ services:
     volumes:
       - mysql-database-data-volume:/var/lib/mysql
     networks:
-      - dr-labor-application-network  
+      - dr_labor_application_network  
   
 # Volumes
 volumes:
   mysql-database-data-volume:
 
 networks:
-  dr-labor-application-network:
+  dr_labor_application-network:

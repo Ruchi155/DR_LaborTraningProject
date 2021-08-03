@@ -20,10 +20,10 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#" th:href="@{/}">Disaster Recovery</a>
+				<a class="navbar-brand" href="#" th:href="@{/contractor}">Disaster Recovery</a>
 			</div>
 			<ul class="nav navbar-nav">
-						<li sec:authorize="isAuthenticated()"><a th:href="@{/login}">Logout</a></li>
+						<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
 			</ul>
 		</div>
 	</nav>
@@ -32,37 +32,38 @@
 	</br>
 	<div class="row row-no-gutters" style="height: 95vh; ">
 		<div class="col-xs-6 col-md-3" style="height:100%;background-color:whitesmoke">
-			<button type="button" class="btn btn-outline-primary" style="height:50px; width: 100%; margin-top:5px;"><a href="contractor_timecards">TimeSheet Management</a></button>
+			<button type="button" class="btn btn-outline-primary" style="height:50px; width: 100%; margin-top:5px;"><a th:href="@{/contractor/list_timecards}">TimeSheet Management</a></button>
 		</div>
 	  	<div class="col-xs-12 col-md-8">
-		<table border=1 bgcolor="silver" align="center" cellpadding="6",cellspacing ="6">
 		
 		<br><br><br>
 		<h2 align="center">Timesheet Approval</h2>
-		<tr>
-		<th>SiteCode</th>
-		<!--  <th>ContractorName</th> -->
-		<th>TotalHrs</th>
-		<th>TotalAmount</th>
 		
-		</tr>
-		<tr th:each="timecard:${timecards}">
-		<td th:text="${timecard.siteCode}">SiteCode</td>
-		<td th:text="${timecard.totalHours}">Total Hours</td>
-		<td th:text="${timecard.totalAmount}">Total Amount</td>	
-		
-		<!--  <td th:text="${timecard.contractor}">Contractor Name</td>-->
-			
-		<!--   <td><a th:href="@{/country_details/{name}(name=${country.name})}">view</a></td> -->
-		
-		<td><a th:href="@{/edittimecard/contractor/{id}(id=${timecard.id})}">edit</a></td>
-		<td><a th:href="@{/deletetimecard/contractor/{id}(id=${timecard.id})}">delete</a></td>
-		</tr>
-		
+		<br>
+		<br>	
+		<table class="table">
+		  <thead>
+		    <tr>
+		      <th scope="col">Site Code</th>
+		      <th scope="col">Total Labor Hours</th>
+		      <th scope="col">Total Labor Amount</th>
+		      <th scope="col">Total Machine Hours</th>
+		      <th scope="col">Total Machine Amount</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <tr th:each="timecard:${timecards}">
+			    <td th:text="${timecard.siteCode}"/>
+				<td th:text="${timecard.totalHoursJob}"/>
+				<td th:text="${timecard.totalAmountjob}"/>
+				<td th:text="${timecard.totalHoursMachine}"/>
+				<td th:text="${timecard.totalAmountMachine}"/>
+				<td><a th:href="@{/contractor/edittimecard/{id}(id=${timecard.id})}">edit</a></td>
+				<td><a th:href="@{/contractor/deletetimecard/{id}(id=${timecard.id})}">delete</a></td>
+		    </tr>
+		  </tbody>
 		</table>
-		<br>
-		<br>
-		 <center><a href="/newtimecard">Add New Timecard</a></center>
+		 <center><a href="/contractor/newtimecard">Add New Timecard</a></center>
 		</div>
 		</div>
 		</body>

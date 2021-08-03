@@ -191,8 +191,6 @@ public class DRLaborController
 		return "redirect:/list_machines";
 	}
 	
-	/* Admin Controller */
-	
 
 	
 }
