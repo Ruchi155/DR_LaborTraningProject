@@ -123,14 +123,13 @@
 						<id>default</id>
 						<goals>
 							<goal>build</goal>
-			 <goal>push</goal> 
-
-							 <goal>push</goal>
+			 				<goal>push</goal> 
+							<goal>push</goal>
 						</goals>
 					</execution>
 				</executions>
 				<configuration>
-					<repository>mishri${project.name}</repository>
+					<repository>adkeiber/${project.name}</repository>
 					<tag>${project.version}</tag>
 					<skipDockerInfo>true</skipDockerInfo>
 				</configuration>

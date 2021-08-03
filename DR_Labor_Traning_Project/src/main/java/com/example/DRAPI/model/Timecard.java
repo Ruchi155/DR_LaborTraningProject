@@ -37,12 +37,7 @@ public class Timecard implements Serializable {
 	private double totalAmountMachine;
 	private boolean approved;
 	
-	public boolean isApproved() {
-		return approved;
-	}
-	public void setApproved(boolean approved) {
-		this.approved = approved;
-	}
+
 	@ManyToOne
 	@JoinColumn(name="machine_id")
 	private Machine machine;
@@ -73,7 +68,12 @@ public class Timecard implements Serializable {
 		this.machine = machine;
 		this.job = job;
 	}
-	
+	public boolean isApproved() {
+		return approved;
+	}
+	public void setApproved(boolean approved) {
+		this.approved = approved;
+	}
 	public String getMachineString() {
 		return machineString;
 	}
@@ -102,8 +102,6 @@ public class Timecard implements Serializable {
 		this.contractor = contractor;
 	}
 
-
-
 	public int getId() {
 		return id;
 	}
@@ -111,7 +109,6 @@ public class Timecard implements Serializable {
 	public void setId(int id) {
 		this.id = id;
 	}
-
 
 	@Override
 	public String toString() {
