@@ -30,10 +30,16 @@ public class Timecard implements Serializable {
 	
 	private double totalHoursJob;
 	
+<<<<<<< Updated upstream
+=======
+	private double totalHoursJob;
+	
+>>>>>>> Stashed changes
 	private double totalAmountjob;
 	
 	private double totalHoursMachine;
 	
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name="timecards_machines", 
@@ -41,6 +47,8 @@ public class Timecard implements Serializable {
 		inverseJoinColumns = {@JoinColumn(name="machine_id")})
 	private Set<Machine> machines;
 =======
+=======
+>>>>>>> Stashed changes
 	private double totalAmountMachine;
 	private boolean approved;
 	
@@ -53,6 +61,9 @@ public class Timecard implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="machine_id")
 	private Machine machine;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 	
 	@ManyToOne
@@ -63,12 +74,18 @@ public class Timecard implements Serializable {
 		
 	}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 	public Timecard(String siteCode, Contractor contractor, double totalHours, double totalAmount) {
 =======
+=======
+>>>>>>> Stashed changes
 
 
 	public Timecard(String siteCode, User contractor, double totalHoursJob, double totalAmountjob,
 			double totalHoursMachine, double totalAmountMachine, boolean approved, Machine machine, Job job) {
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 		super();
 		this.siteCode = siteCode;
@@ -114,6 +131,7 @@ public class Timecard implements Serializable {
 	}
 	public Machine getMachine() {
 		return machine;
+<<<<<<< Updated upstream
 	}
 	public double getTotalHoursJob() {
 		return totalHoursJob;
@@ -136,6 +154,30 @@ public class Timecard implements Serializable {
 	public double getTotalAmountMachine() {
 		return totalAmountMachine;
 	}
+=======
+	}
+	public double getTotalHoursJob() {
+		return totalHoursJob;
+	}
+	public void setTotalHoursJob(double totalHoursJob) {
+		this.totalHoursJob = totalHoursJob;
+	}
+	public double getTotalAmountjob() {
+		return totalAmountjob;
+	}
+	public void setTotalAmountjob(double totalAmountjob) {
+		this.totalAmountjob = totalAmountjob;
+	}
+	public double getTotalHoursMachine() {
+		return totalHoursMachine;
+	}
+	public void setTotalHoursMachine(double totalHoursMachine) {
+		this.totalHoursMachine = totalHoursMachine;
+	}
+	public double getTotalAmountMachine() {
+		return totalAmountMachine;
+	}
+>>>>>>> Stashed changes
 	public void setTotalAmountMachine(double totalAmountMachine) {
 		this.totalAmountMachine = totalAmountMachine;
 	}
