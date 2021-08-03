@@ -138,7 +138,7 @@
 		</plugins> 
 	</build>
 
-	  <repositories>
+	 <!--<repositories>
 		<repository>
 			<id>spring-milestones</id>
 			<name>Spring Milestones</name>
@@ -153,6 +153,6 @@
 			<url>https://repo.spring.io/milestones</url>
 		</pluginRepository>
 
-	</pluginRepositories>    
+	</pluginRepositories>  -->  
 
 </project>
