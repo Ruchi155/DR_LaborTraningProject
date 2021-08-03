@@ -36,7 +36,7 @@
 			<button type="button" class="btn btn-outline-primary" style="height:50px; width: 100%;  margin-top:5px;"><a th:href="@{/admin/list_machines}">Machine Management</a></button>
 		</div>
 	  	<div class="col-xs-12 col-md-8">
-			<form th:action="@{/admin/savemachine}" th:object="${machine}" Method="Post">
+			<form th:action="@{/admin/savemachine/{id}(id=${machine.id})" th:object="${machine}" Method="Post">
 			
 			MachineCode:<input type="text" th:field="*{machineCode}"/><br><br>
 			Description:<input type="text" th:field="*{description}"/><br><br>

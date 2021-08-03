@@ -101,8 +101,15 @@ public class DRLaborAdminController {
 		model.addAttribute("job", j);
 		return "new_job";
 	}
+	@RequestMapping(value= "/savejob", method=RequestMethod.POST)
+	public String saveJob(@ModelAttribute("job") Job j)
+	{
+		jobserv.SaveJob(j);
+		return "redirect:/admin/list_jobs";
+	}
+	
 	@RequestMapping(value= "/savejob/{id}", method=RequestMethod.POST)
-	public String saveJob(@ModelAttribute("job") Job j,@PathVariable(name="id") int id)
+	public String saveJobWithID(@ModelAttribute("job") Job j, @PathVariable(name="id") int id)
 	{
 		jobserv.deleteJobById(id);
 		jobserv.SaveJob(j);
@@ -139,10 +146,15 @@ public class DRLaborAdminController {
 		model.addAttribute("machine", m);
 		return "new_machine";
 	}
+	@RequestMapping(value= "/savemachine", method=RequestMethod.POST)
+	public String saveMachine(@ModelAttribute("machine") Machine m)
+	{
+		machineserv.SaveMachine(m);
+		return "redirect:/admin/list_machines";
+	}
 	@RequestMapping(value= "/savemachine/{id}", method=RequestMethod.POST)
 	public String saveMachine(@ModelAttribute("machine") Machine m,@PathVariable(name="id") int id)
 	{
-		
 		machineserv.deleteMachineById(id);
 		machineserv.SaveMachine(m);
 		return "redirect:/admin/list_machines";
