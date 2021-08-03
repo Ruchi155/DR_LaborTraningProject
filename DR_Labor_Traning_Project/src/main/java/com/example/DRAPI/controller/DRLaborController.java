@@ -42,22 +42,6 @@ public class DRLaborController
 	@Autowired
 	UserService uService;
 	
-//	@PostMapping("/root/{email}")
-//	public ModelAndView dashboardSelector(@PathVariable(name="email") String email){
-//		
-//			User u = uService.findUserByEmail(email);
-//			ModelAndView mav= new ModelAndView();
-//			
-//			if(u.getRole().equals("Contractor")) {
-//				mav= new ModelAndView("contractor_main");
-//			}else {
-//				mav= new ModelAndView("admin_main");
-//			}
-//			
-//			mav.addObject("user",u);
-//			return mav;
-//	}
-	
 	@PostMapping("/logout")
 	public String logoutDo(HttpServletRequest request,HttpServletResponse response){
 	HttpSession session= request.getSession(false);

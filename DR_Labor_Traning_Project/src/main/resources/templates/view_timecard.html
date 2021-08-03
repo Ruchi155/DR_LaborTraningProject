@@ -46,17 +46,22 @@
 			    <tr>
 			    	<th scope="col">Name</th>
 			      	<th scope="col">Site Code</th>
-			      	<th scope="col">Total Hours</th>
-			      	<th scope="col">Total Amount</th>
+			      	<th scope="col">Job</th>
+			      	<th scope="col">Total Job Hours</th>
+			      	<th scope="col">Total Job Amount</th>
+			      	<th scope="col">Machine</th>
 			      	<th scope="col">Total Machine Hours</th>
 			      	<th scope="col">Total Machine Amount</th>
 			    </tr>
 			  </thead>
 			  <tbody>
 			    <tr>
-				    <td th:text="${user.firstName} + ' ' + ${user.lastName} "/>
+				    <td th:text="${user.firstName} + ' ' + ${user.lastName}"/>
+				    <td th:text="${timecard.siteCode}"/>
+				    <td th:text="${job.jobCode}"/>
 					<td th:text="${timecard.totalHoursJob}"/>
 					<td th:text="${timecard.totalAmountjob}"/>
+					<td th:text="${machine.machineCode}"/>
 					<td th:text="${timecard.totalHoursMachine}"/>
 					<td th:text="${timecard.totalAmountMachine}"/>
 			    </tr>

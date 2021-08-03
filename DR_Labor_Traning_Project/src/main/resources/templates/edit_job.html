@@ -36,14 +36,34 @@
 				<button type="button" class="btn btn-outline-primary" style="height:50px; width: 100%;  margin-top:5px;"><a th:href="@{/admin/list_machines}">Machine Management</a></button>
 			</div>
 			  	<div class="col-xs-12 col-md-8">
+				
 				<form th:action="@{/admin/savejob}" th:object="${job}" Method="Post">
-				ID:<input type="text" th:field="*{id}" readonly=readonly/>
-				Job Code:<input type="text" th:field="*{jobCode}"/><br><br>
-				Description:<input type="text" th:field="*{description}" /><br><br>
-				Hourly Rate:<input type= "text" th:field="*{hourlyRate}" />
-				<br><br>
-				MaxHours Per Day:<input type= "text" th:field="*{maxHoursPerDay}" />
-				<button type="submit">Update</button>
+		
+					<div class="mb-5">
+					 	<label class="form-label">Job Code</label>
+		    			<input type="text" th:field="*{jobCode}"/>
+					</div>
+					<br>
+					<br>
+					<div class="mb-3">
+						<label class="form-label">Description</label>
+						<input type="text" th:field="*{description}"/>
+					</div>
+					<br>
+					<br>
+					<div class="mb-3">
+						<label class="form-label">Hourly Rate</label>
+						<input type= "text" th:field="*{hourlyRate}"/>
+					</div>
+					<br>
+					<br>
+					<div class="mb-3">
+						<label class="form-label">Max Hours Per Day</label>
+						<input type= "text" th:field="*{maxHoursPerDay}"/>
+					</div>
+					<br>
+					<br>
+					<button type="submit">Save</button>
 				</form>
 			</div>
 		</div>

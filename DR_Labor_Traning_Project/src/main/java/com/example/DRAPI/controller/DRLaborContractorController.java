@@ -51,16 +51,12 @@ public class DRLaborContractorController {
 		Timecard tc = new Timecard();
 		List<Machine> machines = machineserv.getAllMachines();
 		List<Job> jobs = jobserv.getAllJobs();
-		Job job = tc.getJob();
-		Machine machine = tc.getMachine();
 		User u = uService.findUserByEmail(authentication.getName());
 		System.out.println(authentication.getName());
 		model.addAttribute("contractor",u);
 		model.addAttribute("labor", jobs);
 		model.addAttribute("machines",machines);
-		model.addAttribute("machine",machine);
 		model.addAttribute("timecard", tc);
-		model.addAttribute("job",job);
 		return "new_timecard";
 	}
 	@RequestMapping(value= "/savetimecard", method=RequestMethod.POST)
@@ -69,16 +65,20 @@ public class DRLaborContractorController {
 		User u = uService.findUserByEmail(authentication.getName());
 		
 		tc.setContractor(u);
+		tc.setMachine(machineserv.getMachineByCode(tc.getMachineString()));
+		tc.setJob(jobserv.getJobByCode(tc.getJobString()));
 		timecardserv.SaveTimecard(tc);
+		
 		return "redirect:/contractor/list_timecards";
 	}
 	@RequestMapping(value= "/saveTimecardEdit/{id}", method=RequestMethod.POST)
-	public String saveTimecardEdit(@PathVariable(name="id") int id, @ModelAttribute("timecard") Timecard tc,Authentication authentication)
+	public String saveTimecardEdit(@PathVariable(name="id") int id, @ModelAttribute("timecard") Timecard tc,Authentication auth)
 	{	
-		timecardserv.deleteTimecardById(id);
-		User u = uService.findUserByEmail(authentication.getName());
+		User u = uService.findUserByEmail(auth.getName());
 		
 		tc.setContractor(u);
+		tc.setMachine(machineserv.getMachineByCode(tc.getMachineString()));
+		tc.setJob(jobserv.getJobByCode(tc.getJobString()));
 		timecardserv.SaveTimecard(tc);
 		return "redirect:/contractor/list_timecards";
 	}
@@ -115,7 +115,6 @@ public class DRLaborContractorController {
 		mav.addObject("machine",machine);
 		mav.addObject("timecard",tc);
 		mav.addObject("job",job);
-		
 		return mav;
 	}
 

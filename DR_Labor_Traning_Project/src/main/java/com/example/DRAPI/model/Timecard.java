@@ -51,6 +51,10 @@ public class Timecard implements Serializable {
 	@JoinColumn(name="job_id")
 	private Job job;
 
+	private String machineString;
+	
+	private String jobString;
+
 	public Timecard() {
 		
 	}
@@ -68,6 +72,19 @@ public class Timecard implements Serializable {
 		this.approved = approved;
 		this.machine = machine;
 		this.job = job;
+	}
+	
+	public String getMachineString() {
+		return machineString;
+	}
+	public void setMachineString(String machineString) {
+		this.machineString = machineString;
+	}
+	public String getJobString() {
+		return jobString;
+	}
+	public void setJobString(String jobString) {
+		this.jobString = jobString;
 	}
 	public String getSiteCode() {
 		return siteCode;

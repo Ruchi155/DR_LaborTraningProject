@@ -138,10 +138,14 @@ public class DRLaborAdminController {
 		model.addAttribute("machine", m);
 		return "new_machine";
 	}
-	@RequestMapping(value= "/savemachine", method=RequestMethod.POST)
-	public String saveMachine(@ModelAttribute("machine") Machine m)
+	@RequestMapping(value= "/savemachine/{id}", method=RequestMethod.POST)
+	public String saveMachine(@ModelAttribute("machine") Machine m,@PathVariable(name="id") int id)
 	{
+		machineserv.deleteMachineById(id);
+		int id2 = m.getId();
+		m.setId(id);
 		machineserv.SaveMachine(m);
+		
 		return "redirect:/admin/list_machines";
 	}
 	

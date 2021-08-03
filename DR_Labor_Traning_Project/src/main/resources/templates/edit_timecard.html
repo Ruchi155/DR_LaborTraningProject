@@ -48,8 +48,8 @@
 			<br>
 			<div class="mb-3">
 				<label class="form-label">Labor</label>
-				<select th:object="${job}" class="form-select form-select-lg mb-3">
-					<option th:each="i : ${labor}" th:value="${i}" th:text="${i}"></option>
+				<select th:field="*{jobString}" class="form-select form-select-lg mb-3">
+					<option th:each="i : ${labor}" th:value="${i.jobCode}" th:text="${i}"></option>
 				</select>
 			</div>
 			<br>
@@ -68,8 +68,8 @@
 			<br>
 			<div class="mb-3">
 				<label class="form-label">Machine</label>
-				<select th:object="${machine}" class="form-select form-select-lg mb-3">
-					<option th:each="i : ${machines}" th:value="${i}" th:text="${i}"></option>
+				<select th:field="*{machineString}" class="form-select form-select-lg mb-3">
+					<option th:each="i : ${machines}" th:value="${i.machineCode}" th:text="${i}"></option>
 				</select>
 			</div>
 			<br>
