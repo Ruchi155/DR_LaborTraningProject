@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -55,7 +56,16 @@ public class User {
         this.roles = roles;
     }
   
-
+    public boolean hasRole(String role) {
+    	boolean hasRole = false;
+    	for(Role r: this.roles) {
+    		if(r.getName().equals(role)) {
+    			hasRole=true;
+    		}
+    	}
+    	return hasRole;
+    }
+    
     public Long getId() {
         return id;
     }
@@ -95,16 +105,18 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+    
+    
 
     public Collection<Role> getRoles() {
-        return roles;
-    }
+		return roles;
+	}
 
-    public void setRoles(Collection<Role> roles) {
-        this.roles = roles;
-    }
+	public void setRoles(Collection<Role> roles) {
+		this.roles = roles;
+	}
 
-    @Override
+	@Override
     public String toString() {
         return "User{" +
                 "id=" + id +

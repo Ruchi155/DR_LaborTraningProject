@@ -11,6 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 
+import com.example.DRAPI.controller.LoginSuccessHandler;
 import com.example.DRAPI.service.UserServiceImpl;
 
 @Configuration
@@ -19,25 +20,36 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Autowired
 	UserServiceImpl uService;
 	
+	@Autowired private LoginSuccessHandler loginSuccessHandler;
+	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception
 	{
 		  http
+		  	.csrf().disable()
 		  	.authorizeRequests()
 		  		.antMatchers("/registration**","/js","/css","/img","/webjars/**").permitAll()
-		  		.anyRequest().authenticated()
-//		  		.antMatchers("/contractor").access("hasRole('ROLE_USER')")
+		  		.antMatchers("/admin/**").hasAuthority("Admin")
+		  		.antMatchers("/contractor/**").hasAuthority("Contractor")
+//		  		.anyRequest().authenticated()
+//		  		.antMatchers("/contractor").access("hasRole('Admin')")
+//		  		.antMatchers("/admin").access("hasRole('Contractor')")
 		  		.and()
 		  	.formLogin()
+
 		  		.loginPage("/login")
 		  		.permitAll()
-		 .and()
+		  		.successHandler(loginSuccessHandler)
+		 		.and()
+
 		 	.logout()
 		 		.invalidateHttpSession(true)
 		 		.clearAuthentication(true)
 		 		.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 		 		.logoutSuccessUrl("/login?logout")
 		 		.permitAll();
+		
+
 	}
 	
 	@Bean

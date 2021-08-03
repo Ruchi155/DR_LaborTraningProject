@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -30,7 +31,7 @@ public class Job implements Serializable{
 	
 	private double maxHoursPerDay;
 
-	@ManyToMany(cascade=CascadeType.ALL,mappedBy = "jobs", fetch = FetchType.LAZY)
+	@OneToMany(cascade=CascadeType.ALL,mappedBy = "job", fetch = FetchType.LAZY)
 	private Set<Timecard> timecard;
 	
 	public Set<Timecard> getTimecard() {
