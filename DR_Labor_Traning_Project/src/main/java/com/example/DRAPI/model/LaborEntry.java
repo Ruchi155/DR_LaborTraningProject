@@ -1,5 +1,6 @@
 package com.example.DRAPI.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,7 +18,7 @@ public class LaborEntry {
 	private Job laborCode;
 	private double hrsWorked;
 	
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name="card_id")
 	private Timecard card;
 	

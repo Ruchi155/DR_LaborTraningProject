@@ -13,7 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.DRAPI.model.Job;
+import com.example.DRAPI.model.Machine;
 import com.example.DRAPI.model.Timecard;
+import com.example.DRAPI.model.User;
 import com.example.DRAPI.service.JobService;
 import com.example.DRAPI.service.MachineService;
 import com.example.DRAPI.service.TimecardService;
@@ -44,21 +47,46 @@ public class DRLaborContractorController {
 	/* Timecard Controller */
 	
 	@RequestMapping("/newtimecard")
-	public String addnewTimecard(Model model) {
+	public String addnewTimecard(Model model, Authentication authentication) {
 		Timecard tc = new Timecard();
+		List<Machine> machines = machineserv.getAllMachines();
+		List<Job> jobs = jobserv.getAllJobs();
+		Job job = tc.getJob();
+		Machine machine = tc.getMachine();
+		User u = uService.findUserByEmail(authentication.getName());
+		System.out.println(authentication.getName());
+		model.addAttribute("contractor",u);
+		model.addAttribute("labor", jobs);
+		model.addAttribute("machines",machines);
+		model.addAttribute("machine",machine);
 		model.addAttribute("timecard", tc);
+		model.addAttribute("job",job);
 		return "new_timecard";
 	}
 	@RequestMapping(value= "/savetimecard", method=RequestMethod.POST)
-	public String saveTimecard(@ModelAttribute("timecard") Timecard tc)
-	{
+	public String saveTimecard(@ModelAttribute("timecard") Timecard tc,Authentication authentication)
+	{	
+		User u = uService.findUserByEmail(authentication.getName());
+		
+		tc.setContractor(u);
+		timecardserv.SaveTimecard(tc);
+		return "redirect:/contractor/list_timecards";
+	}
+	@RequestMapping(value= "/saveTimecardEdit/{id}", method=RequestMethod.POST)
+	public String saveTimecardEdit(@PathVariable(name="id") int id, @ModelAttribute("timecard") Timecard tc,Authentication authentication)
+	{	
+		timecardserv.deleteTimecardById(id);
+		User u = uService.findUserByEmail(authentication.getName());
+		
+		tc.setContractor(u);
 		timecardserv.SaveTimecard(tc);
 		return "redirect:/contractor/list_timecards";
 	}
 	
 	@RequestMapping("list_timecards")
-	public String listtimecards(Model model) {
-		List<Timecard> list = timecardserv.getAllTimecards();
+	public String listtimecards(Model model, Authentication authentication) {
+		List<Timecard> list = timecardserv.getTimecardsByUser(uService.findUserByEmail(authentication.getName()));
+		
 		model.addAttribute("timecards", list);
 		return "contractor_timecard";	
 	}
@@ -72,11 +100,22 @@ public class DRLaborContractorController {
 	}
 
 	@RequestMapping("/edittimecard/{id}")
-	public ModelAndView showEditTimecardPage(@PathVariable(name="id") int id)
+	public ModelAndView showEditTimecardPage(@PathVariable(name="id") int id, Authentication authentication)
 	{
-		ModelAndView mav= new ModelAndView("edit_timecard");
-		Timecard tc= timecardserv.get(id);
+		User u = uService.findUserByEmail(authentication.getName());
+		ModelAndView mav = new ModelAndView("edit_timecard");
+		List<Machine> machines = machineserv.getAllMachines();
+		List<Job> jobs = jobserv.getAllJobs();
+		Timecard tc = timecardserv.get(id);
+		Machine machine = tc.getMachine();
+		Job job = tc.getJob();
+		mav.addObject("contractor",u);
+		mav.addObject("labor", jobs);
+		mav.addObject("machines",machines);
+		mav.addObject("machine",machine);
 		mav.addObject("timecard",tc);
+		mav.addObject("job",job);
+		
 		return mav;
 	}
 

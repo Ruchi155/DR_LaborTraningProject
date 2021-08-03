@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.example.DRAPI.model.Job;
 import com.example.DRAPI.model.Machine;
 import com.example.DRAPI.model.Timecard;
+import com.example.DRAPI.model.User;
 import com.example.DRAPI.service.JobService;
 import com.example.DRAPI.service.MachineService;
 import com.example.DRAPI.service.TimecardService;
@@ -53,8 +54,16 @@ public class DRLaborAdminController {
 	@RequestMapping("timecards/review/{id}")
 	public ModelAndView finalizeTimecards(@PathVariable(name="id") int id) {
 		ModelAndView mav= new ModelAndView("view_timecard");
+		
 		Timecard t = timecardserv.get(id);
+		User u = t.getContractor();
+		Job j = t.getJob();
+		Machine m = t.getMachine();
+		System.out.println(u);
+		mav.addObject("user",u);
 		mav.addObject("timecard",t);
+		mav.addObject("job",j);
+		mav.addObject("machine",m);
 		return mav;
 	}
 	

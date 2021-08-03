@@ -24,14 +24,17 @@ public class Timecard implements Serializable {
 	
 	private String siteCode;
 	
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name = "contractor_id")
 	private User contractor;
 	
-	private double totalHours;
+	private double totalHoursJob;
 	
-	private double totalAmount;
+	private double totalAmountjob;
 	
+	private double totalHoursMachine;
+	
+	private double totalAmountMachine;
 	private boolean approved;
 	
 	public boolean isApproved() {
@@ -40,29 +43,32 @@ public class Timecard implements Serializable {
 	public void setApproved(boolean approved) {
 		this.approved = approved;
 	}
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinTable(name="timecards_machines", 
-		joinColumns = {@JoinColumn(name = "timecard_id")},
-		inverseJoinColumns = {@JoinColumn(name="machine_id")})
-	private Set<Machine> machines;
+	@ManyToOne
+	@JoinColumn(name="machine_id")
+	private Machine machine;
 	
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinTable(name="timecards_jobs", 
-		joinColumns = {@JoinColumn(name = "timecard_id")},
-		inverseJoinColumns = {@JoinColumn(name="jobs_id")})
-	private Set<Job> jobs;
+	@ManyToOne
+	@JoinColumn(name="job_id")
+	private Job job;
 
 	public Timecard() {
 		
 	}
-	public Timecard(String siteCode, User contractor, double totalHours, double totalAmount) {
+
+
+	public Timecard(String siteCode, User contractor, double totalHoursJob, double totalAmountjob,
+			double totalHoursMachine, double totalAmountMachine, boolean approved, Machine machine, Job job) {
 		super();
 		this.siteCode = siteCode;
 		this.contractor = contractor;
-		this.totalHours = totalHours;
-		this.totalAmount = totalAmount;
+		this.totalHoursJob = totalHoursJob;
+		this.totalAmountjob = totalAmountjob;
+		this.totalHoursMachine = totalHoursMachine;
+		this.totalAmountMachine = totalAmountMachine;
+		this.approved = approved;
+		this.machine = machine;
+		this.job = job;
 	}
-
 	public String getSiteCode() {
 		return siteCode;
 	}
@@ -79,21 +85,7 @@ public class Timecard implements Serializable {
 		this.contractor = contractor;
 	}
 
-	public double getTotalHours() {
-		return totalHours;
-	}
 
-	public void setTotalHours(double totalHours) {
-		this.totalHours = totalHours;
-	}
-
-	public double getTotalAmount() {
-		return totalAmount;
-	}
-
-	public void setTotalAmount(double totalAmount) {
-		this.totalAmount = totalAmount;
-	}
 
 	public int getId() {
 		return id;
@@ -106,21 +98,45 @@ public class Timecard implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Timecard [siteCode=" + siteCode + ", contractor=" + contractor + ", totalHours="
-				+ totalHours + ", totalAmount=" + totalAmount + "]";
+		return "Timecard [siteCode=" + siteCode + ", contractor=" + contractor + "]";
 	}
-	public Set<Machine> getMachines() {
-		return machines;
+	public Machine getMachine() {
+		return machine;
 	}
-	public void setMachines(Set<Machine> machines) {
-		this.machines = machines;
+	public double getTotalHoursJob() {
+		return totalHoursJob;
 	}
-	public Set<Job> getJobs() {
-		return jobs;
+	public void setTotalHoursJob(double totalHoursJob) {
+		this.totalHoursJob = totalHoursJob;
 	}
-	public void setJobs(Set<Job> jobs) {
-		this.jobs = jobs;
+	public double getTotalAmountjob() {
+		return totalAmountjob;
 	}
+	public void setTotalAmountjob(double totalAmountjob) {
+		this.totalAmountjob = totalAmountjob;
+	}
+	public double getTotalHoursMachine() {
+		return totalHoursMachine;
+	}
+	public void setTotalHoursMachine(double totalHoursMachine) {
+		this.totalHoursMachine = totalHoursMachine;
+	}
+	public double getTotalAmountMachine() {
+		return totalAmountMachine;
+	}
+	public void setTotalAmountMachine(double totalAmountMachine) {
+		this.totalAmountMachine = totalAmountMachine;
+	}
+	public void setMachine(Machine machine) {
+		this.machine = machine;
+	}
+	public Job getJob() {
+		return job;
+	}
+	public void setJob(Job job) {
+		this.job = job;
+	}
+
 
 
 	
