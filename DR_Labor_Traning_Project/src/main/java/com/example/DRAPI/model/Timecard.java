@@ -24,7 +24,7 @@ public class Timecard implements Serializable {
 	
 	private String siteCode;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne()
 	@JoinColumn(name = "contractor_id")
 	private User contractor;
 	

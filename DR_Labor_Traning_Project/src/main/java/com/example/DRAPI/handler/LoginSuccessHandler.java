@@ -1,4 +1,4 @@
-package com.example.DRAPI.controller;
+package com.example.DRAPI.handler;
 
 import java.io.IOException;
 

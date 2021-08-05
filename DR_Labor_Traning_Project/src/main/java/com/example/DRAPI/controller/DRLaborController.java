@@ -30,17 +30,6 @@ import com.example.DRAPI.service.UserService;
 @Controller
 public class DRLaborController 
 {
-
-	@Autowired
-	TimecardService timecardserv;
-	
-	@Autowired
-	JobService jobserv;
-	
-	@Autowired
-	MachineService machineserv;
-	@Autowired
-	UserService uService;
 	
 	@PostMapping("/logout")
 	public String logoutDo(HttpServletRequest request,HttpServletResponse response){

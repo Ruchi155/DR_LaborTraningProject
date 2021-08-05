@@ -11,7 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 
-import com.example.DRAPI.controller.LoginSuccessHandler;
+import com.example.DRAPI.handler.LoginSuccessHandler;
 import com.example.DRAPI.service.UserServiceImpl;
 
 @Configuration
@@ -31,9 +31,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		  		.antMatchers("/registration**","/js","/css","/img","/webjars/**").permitAll()
 		  		.antMatchers("/admin/**").hasAuthority("Admin")
 		  		.antMatchers("/contractor/**").hasAuthority("Contractor")
-//		  		.anyRequest().authenticated()
-//		  		.antMatchers("/contractor").access("hasRole('Admin')")
-//		  		.antMatchers("/admin").access("hasRole('Contractor')")
 		  		.and()
 		  	.formLogin()
 
