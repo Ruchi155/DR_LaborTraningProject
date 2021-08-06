@@ -31,63 +31,72 @@
 	</br>
 	<div class="row row-no-gutters" style="height: 95vh; ">
 		<div class="col-xs-6 col-md-3" style="height:100%;background-color:whitesmoke">
-			<button type="button" class="btn btn-outline-primary" style="height:50px; width: 100%; margin-top:5px;"><a href="contractor_timecards">TimeSheet Management</a></button>
+			<button type="button" class="btn btn-outline-primary" style="height:50px; width: 100%; margin-top:5px;"><a th:href="@{/contractor/list_timecards}">TimeSheet Management</a></button>
 		</div>
 	  	<div class="col-xs-12 col-md-8">
 
-		<form th:action="@{/contractor/savetimecard}" th:object="${timecard}" Method="Post">
+		<form class="form" th:action="@{/contractor/savetimecard}" th:object="${timecard}" Method="Post">
 
-			<div class="mb-5">
+			<div class="form-group">
 				<label class="form-label">Contractor</label>
-    			<input type="text" class="form-control" th:value="${contractor.firstName} + ' ' + ${contractor.lastName}" readonly="readonly"/>
-    			<br>
+    			<input type="text" th:value="${contractor.firstName} + ' ' + ${contractor.lastName}" readonly="readonly"/>
+    		</div>
+			<br>
+
+    		<div class="form-group">	
 			 	<label class="form-label">Site Code</label>
-    			<input type="text" class="form-control" th:field="*{siteCode}"/>
+    			<input type="text" th:field="*{siteCode}" id="siteCode"/>
+    			<div class="alert alert-warning" th:if="${#fields.hasErrors('siteCode')}" th:errors="*{siteCode}" th:text="Hours Error"></div>
 			</div>
 			<br>
-			<br>
-			<div class="mb-3">
+			
+			<div class="form-group">
 				<label class="form-label">Labor</label>
 				<select th:field="*{jobString}" class="form-select form-select-lg mb-3">
 					<option th:each="i : ${labor}" th:value="${i.jobCode}" th:text="${i}"></option>
 				</select>
 			</div>
 			<br>
-			<br>
-			<div class="mb-3">
+			
+			<div class="form-group">
 				<label class="form-label">Total Hours</label>
-				<input type="text" th:field="*{totalHoursJob}"/>
+				<input id="totalHoursJob" type="text" th:field="*{totalHoursJob}"/>
+				<div class="alert alert-warning" th:if="${#fields.hasErrors('totalHoursJob')}" th:errors="*{totalHoursJob}" th:text="Hours Error"></div>
 			</div>
 			<br>
-			<br>
-			<div class="mb-3">
+			
+			<div class="form-group">
 				<label class="form-label">Total Amount</label>
-				<input type= "text" th:field="*{totalAmountjob}"/>
+				<input id="totalAmountjob" type= "text" th:field="*{totalAmountjob}"/>
+				<div class="alert alert-warning" th:if="${#fields.hasErrors('totalAmountjob')}" th:errors="*{totalAmountjob}" th:text="Hours Error"></div>
 			</div>
 			<br>
-			<br>
-			<div class="mb-3">
+			
+			<div class="form-group">
 				<label class="form-label">Machine</label>
 				<select th:field="*{machineString}" class="form-select form-select-lg mb-3">
 					<option th:each="i : ${machines}" th:value="${i.machineCode}" th:text="${i}"></option>
 				</select>
 			</div>
 			<br>
-			<br>
-			<div class="mb-3">
+			
+			<div class="form-group">
 				<label class="form-label">Total Hours</label>
-				<input type="text" th:field="*{totalHoursMachine}"/>
+				<input id="totalHoursMachine" type="text" th:field="*{totalHoursMachine}"/>
+				<div class="alert alert-warning" th:if="${#fields.hasErrors('totalHoursMachine')}" th:errors="*{totalHoursMachine}" th:text="Hours Error"></div>
 			</div>
 			<br>
-			<br>
-			<div class="mb-3">
+			
+			<div class="form-group">
 				<label class="form-label">Total Amount</label>
-				<input type= "text" th:field="*{totalAmountMachine}"/>
+				<input id="totalAmountMachine" type= "text" th:field="*{totalAmountMachine}"/>
+				<div class="alert alert-warning" th:if="${#fields.hasErrors('totalAmountMachine')}" th:errors="*{totalAmountMachine}" th:text="Hours Error"></div>
 			</div>
 			<br>
-			<br>
+			
 			<button type="submit">Save</button>
 		</form>
+
 
 </div>
 </div>

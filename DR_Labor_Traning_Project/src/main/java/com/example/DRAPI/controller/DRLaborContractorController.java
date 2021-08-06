@@ -2,10 +2,13 @@ package com.example.DRAPI.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -60,10 +63,13 @@ public class DRLaborContractorController {
 		return "new_timecard";
 	}
 	@RequestMapping(value= "/savetimecard", method=RequestMethod.POST)
-	public String saveTimecard(@ModelAttribute("timecard") Timecard tc,Authentication authentication)
+	public String saveTimecard(@Valid @ModelAttribute("timecard") Timecard tc,BindingResult result, Authentication authentication)
 	{	
-		User u = uService.findUserByEmail(authentication.getName());
+		if(result.hasErrors()) {
+			return "redirect:/contractor/newtimecard";
+		}
 		
+		User u = uService.findUserByEmail(authentication.getName());
 		tc.setContractor(u);
 		tc.setMachine(machineserv.getMachineByCode(tc.getMachineString()));
 		tc.setJob(jobserv.getJobByCode(tc.getJobString()));

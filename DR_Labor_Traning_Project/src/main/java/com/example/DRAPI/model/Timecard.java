@@ -14,6 +14,10 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="timecards")
@@ -22,19 +26,28 @@ public class Timecard implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	@Size(min = 3, max = 13, message="Need to have a site code between lengths 3 and 13")
 	private String siteCode;
 	
 	@ManyToOne()
 	@JoinColumn(name = "contractor_id")
 	private User contractor;
 	
+	@Min(value = 1, message ="Needs to be  at least one hour a day")
+	@Max(value = 24, message ="Can't be for more than 24 hours per day")
 	private double totalHoursJob;
 	
+	@Positive(message="Needs to be positive")
 	private double totalAmountjob;
 	
+	@Min(value = 1, message ="Needs to be  at least one hour a day")
+	@Max(value = 24, message ="Can't be for more than 24 hours per day")
 	private double totalHoursMachine;
 	
+	@Positive(message="Needs to be positive")
 	private double totalAmountMachine;
+	
+	
 	private boolean approved;
 	
 
