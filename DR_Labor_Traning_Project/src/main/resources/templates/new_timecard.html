@@ -46,7 +46,7 @@
     		<div class="form-group">	
 			 	<label class="form-label">Site Code</label>
     			<input type="text" th:field="*{siteCode}" id="siteCode"/>
-    			<div class="alert alert-warning" th:if="${#fields.hasErrors('siteCode')}" th:errors="*{siteCode}" th:text="Hours Error"></div>
+    			<div class="alert alert-warning" th:if="${#fields.hasErrors('siteCode')}" th:errors="*{siteCode}"></div>
 			</div>
 			<br>
 			
@@ -61,14 +61,14 @@
 			<div class="form-group">
 				<label class="form-label">Total Hours</label>
 				<input id="totalHoursJob" type="text" th:field="*{totalHoursJob}"/>
-				<div class="alert alert-warning" th:if="${#fields.hasErrors('totalHoursJob')}" th:errors="*{totalHoursJob}" th:text="Hours Error"></div>
+				<div class="alert alert-warning" th:if="${#fields.hasErrors('totalHoursJob')}" th:errors="*{totalHoursJob}"></div>
 			</div>
 			<br>
 			
 			<div class="form-group">
 				<label class="form-label">Total Amount</label>
 				<input id="totalAmountjob" type= "text" th:field="*{totalAmountjob}"/>
-				<div class="alert alert-warning" th:if="${#fields.hasErrors('totalAmountjob')}" th:errors="*{totalAmountjob}" th:text="Hours Error"></div>
+				<div class="alert alert-warning" th:if="${#fields.hasErrors('totalAmountjob')}" th:errors="*{totalAmountjob}"></div>
 			</div>
 			<br>
 			
@@ -83,14 +83,14 @@
 			<div class="form-group">
 				<label class="form-label">Total Hours</label>
 				<input id="totalHoursMachine" type="text" th:field="*{totalHoursMachine}"/>
-				<div class="alert alert-warning" th:if="${#fields.hasErrors('totalHoursMachine')}" th:errors="*{totalHoursMachine}" th:text="Hours Error"></div>
+				<div class="alert alert-warning" th:if="${#fields.hasErrors('totalHoursMachine')}" th:errors="*{totalHoursMachine}"></div>
 			</div>
 			<br>
 			
 			<div class="form-group">
 				<label class="form-label">Total Amount</label>
 				<input id="totalAmountMachine" type= "text" th:field="*{totalAmountMachine}"/>
-				<div class="alert alert-warning" th:if="${#fields.hasErrors('totalAmountMachine')}" th:errors="*{totalAmountMachine}" th:text="Hours Error"></div>
+				<div class="alert alert-warning" th:if="${#fields.hasErrors('totalAmountMachine')}" th:errors="*{totalAmountMachine}"></div>
 			</div>
 			<br>
 			

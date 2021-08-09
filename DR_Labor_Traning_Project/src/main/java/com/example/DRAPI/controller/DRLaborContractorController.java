@@ -9,6 +9,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -63,10 +64,18 @@ public class DRLaborContractorController {
 		return "new_timecard";
 	}
 	@RequestMapping(value= "/savetimecard", method=RequestMethod.POST)
-	public String saveTimecard(@Valid @ModelAttribute("timecard") Timecard tc,BindingResult result, Authentication authentication)
+	public String saveTimecard(@Valid @ModelAttribute("timecard") Timecard tc,Errors result, Authentication authentication,Model model)
 	{	
 		if(result.hasErrors()) {
-			return "redirect:/contractor/newtimecard";
+			List<Machine> machines = machineserv.getAllMachines();
+			List<Job> jobs = jobserv.getAllJobs();
+			User u = uService.findUserByEmail(authentication.getName());
+			System.out.println(authentication.getName());
+			model.addAttribute("contractor",u);
+			model.addAttribute("labor", jobs);
+			model.addAttribute("machines",machines);
+			model.addAttribute("timecard", tc);
+			return "new_timecard";
 		}
 		
 		User u = uService.findUserByEmail(authentication.getName());
@@ -78,14 +87,19 @@ public class DRLaborContractorController {
 		return "redirect:/contractor/list_timecards";
 	}
 	@RequestMapping(value= "/saveTimecardEdit/{id}", method=RequestMethod.POST)
-	public String saveTimecardEdit(@PathVariable(name="id") int id, @ModelAttribute("timecard") Timecard tc,Authentication auth)
+	public String saveTimecardEdit(@PathVariable(name="id") int id, @Valid @ModelAttribute("timecard") Timecard tc,Errors result,Authentication auth,Model model)
 	{	
-		User u = uService.findUserByEmail(auth.getName());
 		
+		if(result.hasErrors()) {
+			model.addAttribute("timecard",tc);
+			return "redirect:/contractor/edittimecard/{id}";
+		}
+		User u = uService.findUserByEmail(auth.getName());
 		tc.setContractor(u);
 		tc.setMachine(machineserv.getMachineByCode(tc.getMachineString()));
 		tc.setJob(jobserv.getJobByCode(tc.getJobString()));
 		timecardserv.SaveTimecard(tc);
+		
 		return "redirect:/contractor/list_timecards";
 	}
 	
